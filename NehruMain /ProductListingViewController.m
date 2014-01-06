@@ -53,12 +53,15 @@
 {
     [super viewDidLoad];
     
+    UIImageView *titleimage=[[UIImageView alloc]initWithFrame:CGRectMake( 0,0,105,35 )];
+    titleimage.image=[UIImage imageNamed:@"nehru-logo.png"];
+    self.navigationItem.titleView=titleimage;
+
     [activity1 startAnimating];
-    
     [activity2 startAnimating];
     [self initialViews];
     
-        //Refresh view on the second UITableView
+    //Refresh view on the second UITableView
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(AddProducttoWishlist:) name:@"AddToWishlist" object:nil];
 //    [self GetProducts];
 }

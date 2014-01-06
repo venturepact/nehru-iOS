@@ -244,6 +244,11 @@
 {
     [super viewDidLoad];
 //    isClicked=YES;
+    
+    UIImageView *titleimage=[[UIImageView alloc]initWithFrame:CGRectMake( 0,0,105,35 )];
+    titleimage.image=[UIImage imageNamed:@"nehru-logo.png"];
+    self.navigationItem.titleView=titleimage;
+    
     isSize=NO;
     isColour=NO;
     [mTblColors setHidden:YES];
