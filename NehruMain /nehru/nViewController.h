@@ -39,6 +39,10 @@
     IBOutlet UIButton *btnRegister;
     IBOutlet UIButton *btnSignIn;
     
+    //These buttons for changing images.
+    IBOutlet UIButton *btnSignImage;
+    IBOutlet UIButton *btnSignUpImage;
+    
     IBOutlet UITextField *signInEmailId;
     IBOutlet UITextField *signInPassword;
     

@@ -419,7 +419,7 @@
 {
     [searchTableview resignFirstResponder];
     //Calling webservice so as to get the data acording to type and rent....
-    if([searchTableview.text isEqualToString:@""]||[searchTableview.text isEqualToString:nil]||[searchTableview.text isEqualToString:[NSNull null]])
+    if([searchTableview.text isEqualToString:@""]||[searchTableview.text isEqualToString:nil]||[searchTableview.text isEqual:[NSNull null]])
     {
         
     }

@@ -243,12 +243,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    isClicked=YES;
     isSize=NO;
     isColour=NO;
     [mTblColors setHidden:YES];
     [mTblSizes setHidden:YES];
-    [mTblSizes setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0,121,121)];
+//    [mTblSizes setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0,121,121)];
     [mViewColor setHidden:YES];
     [mViewSize setHidden:YES];
     [mBtnInCart setHidden:YES];
@@ -387,22 +386,16 @@
     NSString *Identifier=@"Identifier";
     cell=[tableView dequeueReusableCellWithIdentifier:Identifier];
     
-    
+     [tableView setSeparatorInset:UIEdgeInsetsZero];
         if(cell==nil){
             cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:Identifier];
         }
-        //        dataproduct=[self.arrayOfAllproducts objectAtIndex:indexPath.row];
-        //
+        //dataproduct=[self.arrayOfAllproducts objectAtIndex:indexPath.row];
         if(isColour)
         {
-//            UILabel *Tlblcolor=[[UILabel alloc]initWithFrame:CGRectMake(0,0 ,200,12)];
-        //NSLog(@"Data product image %@",dataproduct.imgproduct);
-//            Tlblcolor.text=[mArrColors objectAtIndex:indexPath.row];
-//            Tlblcolor.font=[UIFont fontWithName:@"Calibri" size:12.0f];
-//            Tlblcolor.textColor= [UIColor redColor];
         cell.textLabel.text=[mArrColors objectAtIndex:indexPath.row];
         cell.textLabel.font=[UIFont fontWithName:@"Calibri" size:12.0f];
-        cell.textLabel.textColor = [UIColor redColor];
+        cell.textLabel.textColor = [UIColor colorWithRed:211.0f/256.0f green:45.0f/256.0f blue:0.0f/256.0f alpha:1.0];
 //            [cell addSubview:Tlblcolor];
         }
     
@@ -410,7 +403,7 @@
         {
             cell.textLabel.text=[mArrSizes objectAtIndex:indexPath.row];
             cell.textLabel.font=[UIFont fontWithName:@"Calibri" size:12.0f];
-            cell.textLabel.textColor = [UIColor redColor];
+            cell.textLabel.textColor = [UIColor colorWithRed:211.0f/256.0f green:45.0f/256.0f blue:0.0f/256.0f alpha:1.0];
         }
         return cell;
     }
@@ -424,10 +417,12 @@
     if(isColour)
     {
     btnColor.titleLabel.text=[mArrColors objectAtIndex:indexPath.row];
+        self.dataproduct.productColor=btnColor.titleLabel.text;
     }
     else
     {
     btnSize.titleLabel.text=[mArrSizes objectAtIndex:indexPath.row];
+        self.dataproduct.productSize=btnSize.titleLabel.text;
     }
 }
 
@@ -448,7 +443,7 @@
     lblproductQuantity.font=[UIFont fontWithName:@"Calibri" size:12.0f];
      lblPriceProduct.font=[UIFont fontWithName:@"Calibri" size:12.0f];
      lblPriceProduct.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"pro-price-bg.png"]];
-    lblPriceProduct.text=[NSString stringWithFormat:@"%0.2f",self.dataproduct.productUnitprice];
+    lblPriceProduct.text=[NSString stringWithFormat:@"$% 0.2f",self.dataproduct.productUnitprice];
     productName.text=self.dataproduct.ProductName;
     productName.font=[UIFont fontWithName:@"Calibri" size:18.0f];
     lblPriceProduct.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"pro-price-bg.png"]];
@@ -663,10 +658,10 @@
 //    [pickerView show];
 }
 
-- (void)dismissPickerControl:(LCTableViewPickerControl*)view
-{
-    [view dismiss];
-}
+//- (void)dismissPickerControl:(LCTableViewPickerControl*)view
+//{
+//    [view dismiss];
+//}
 
 //#pragma mark - LCTableViewPickerDelegate
 //- (void)selectControl:(LCTableViewPickerControl*)view didSelectWithItem:(id)item
@@ -747,10 +742,10 @@
     
     // Load the pages which are now on screen
     
-    if(scrollView==self.scrollView)
-    {
-  //  [self loadVisiblePages];
-    }
+//    if(scrollView==self.scrollView)
+//    {
+//  //  [self loadVisiblePages];
+//    }
 //    [self loadVisiblePages];
 }
 

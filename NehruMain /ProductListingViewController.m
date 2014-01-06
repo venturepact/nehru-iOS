@@ -53,6 +53,11 @@
 {
     [super viewDidLoad];
     
+    UIAlertView* alert_view = [[UIAlertView alloc]
+                               initWithTitle: @"Please Proceed" message: @"Do you want to view the jackets or Sign In First" delegate:nil
+                               cancelButtonTitle: @"Sign In" otherButtonTitles: @"View Jackets First", nil];
+    [alert_view show];
+    alert_view.delegate=self;
     [activity1 startAnimating];
     
     [activity2 startAnimating];
@@ -61,6 +66,33 @@
         //Refresh view on the second UITableView
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(AddProducttoWishlist:) name:@"AddToWishlist" object:nil];
 //    [self GetProducts];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex ==0)
+    {
+        
+        // Get views. controllerIndex is passed in as the controller we want to go to.
+        UIView * fromView = self.tabBarController.selectedViewController.view;
+        UIView * toView = [[self.tabBarController.viewControllers objectAtIndex:1] view];
+        
+        // Transition using a page curl.
+        [UIView transitionFromView:fromView
+                            toView:toView
+                          duration:1.0
+                           options:(2 >self.tabBarController.selectedIndex ? UIViewAnimationTransitionCurlUp : UIViewAnimationTransitionCurlDown)
+                        completion:^(BOOL finished) {
+                            if (finished) {
+                                self.tabBarController.selectedIndex = 1;
+                            }
+                        }];
+    }
+    else if(buttonIndex ==1)
+    {
+        NSLog(@"Do Nothing");
+    }
+    [alertView dismissWithClickedButtonIndex:0 animated:YES];
 }
 
 -(void)LoadIndicatorView
@@ -585,8 +617,15 @@ btnCasual.titleLabel.font=[UIFont fontWithName:@"Calibri" size:14.0f];
     if ([segue.identifier isEqualToString:@"pushToProductDetail"])
     {
         ProductDetailViewController *detailController = segue.destinationViewController;
-        detailController.dataproduct = [self.arrayOfAllproducts objectAtIndex:productIndexpath];
-    }    
+        if(isCasual)
+        {
+            detailController.dataproduct = [self.arrayOfAllproducts objectAtIndex:productIndexpath];
+        }
+        else if(isFormal)
+        {
+            detailController.dataproduct=[self.arrformalproducts objectAtIndex:productIndexpath];
+        }
+    }
 }
 
 #pragma mark -

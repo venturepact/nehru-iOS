@@ -14,5 +14,7 @@
 @property(nonatomic,strong)IBOutlet UILabel *lblproductModel;
 @property(nonatomic,strong)IBOutlet UILabel *lblproductquantity;
 @property(nonatomic,strong)IBOutlet UILabel *lblPriceOfProduct;
+@property(nonatomic,strong)IBOutlet UILabel *lblproductSize;
+@property(nonatomic,strong)IBOutlet UILabel *lblproductColor;
 @property(nonatomic,strong)IBOutlet UILabel *lblTotalprice;
 @end

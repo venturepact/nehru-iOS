@@ -7,19 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LCTableViewPickerControl.h"
 #import "CartViewController.h"
 #import "DataProduct.h"
 #import "DataWishlist.h"
 #import "DataMyCart.h"
 #import "WishListViewController.h"
 #import "PageController.h"
-#import "KxMenu.h"
 #import "iCarousel.h"
 #import "ProductListingViewController.h"
 #import "PageFlippingViewController.h"
 
-@interface ProductDetailViewController : UIViewController<UIScrollViewDelegate,UITextFieldDelegate,LCItemPickerDelegate,UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface ProductDetailViewController : UIViewController<UIScrollViewDelegate,UITextFieldDelegate,UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>
 {
     PageController *pageControllerView;
     UINavigationController *navController;
@@ -38,7 +36,7 @@
     IBOutlet UIView *mViewMainLoader;
     BOOL isSize;
     BOOL isColour;
-    IBOutlet UIView *mLoaderView;
+//    IBOutlet UIView *mLoaderView;
     IBOutlet UIButton *btnSize;
     IBOutlet UIButton *btnColor;
     IBOutlet UIBarButtonItem *btnBack;
@@ -54,7 +52,6 @@
     IBOutlet UITableView *mTblSizes;
     NSMutableArray *mArrColors;
     NSMutableArray *mArrSizes;
-    BOOL isClicked;
     IBOutlet UIView *mViewColor;
     IBOutlet UIView *mViewSize;
     IBOutlet UIActivityIndicatorView *activityViewCart;
@@ -62,7 +59,6 @@
 }
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) IBOutlet UIPageControl *pageControl;
-@property(nonatomic,strong)UIView *mLoaderView;
 @property (nonatomic, retain) iCarousel *carousel;
 @property (weak, nonatomic) IBOutlet UIScrollView *backgScroll;
 @property (nonatomic, strong) UIView *maskView;
@@ -87,5 +83,4 @@
 -(IBAction)closeImageLoaderView:(id)sender;
 -(IBAction)ClickedBackBtn:(id)sender;
 -(IBAction)actionViewLoader:(id)sender;
--(IBAction)ClickedBtnImage:(id)sender;
 @end

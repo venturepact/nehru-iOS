@@ -16,7 +16,7 @@
 #import "ProductDetailViewController.h"
 #import "DataWishlist.h"
 
-@interface ProductListingViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,EGORefreshTableHeaderDelegate>
+@interface ProductListingViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,EGORefreshTableHeaderDelegate,UIAlertViewDelegate>
 {
     IBOutlet UIView *ViewCasual;
     IBOutlet UIView *ViewFormal;

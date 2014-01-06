@@ -15,6 +15,8 @@
 @synthesize lblproductModel;
 @synthesize lblPriceOfProduct;
 @synthesize lblTotalprice;
+@synthesize lblproductSize;
+@synthesize lblproductColor;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

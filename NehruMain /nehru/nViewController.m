@@ -49,7 +49,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
+    txtPassword.text=@"";
+    txtlastname.text=@"";
+    txtEmailId.text=@"";
+    txtConfirmPassword.text=@"";
+    txtfirstname.text=@"";
+    
+    [btnSignImage setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"signin-hover-bg-text.png"]]];
+    [btnSignUpImage setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@""]]];
+    
+    [btnSignImage setTitle:@"" forState:UIControlStateNormal];
+    [btnSignUpImage setTitle:@"Register" forState:UIControlStateNormal];
+    
    /* static int i=0;
     bckgImages=[NSArray arrayWithObjects:@"bg1.jpg",@"bg2.jpg",@"bg3.jpg",@"bg4.jpg",@"bg5.jpg",@"bg6.jpg",nil];
     
@@ -91,26 +102,57 @@
 //    [self performSegueWithIdentifier:@"gotToBrowse" sender:self];
 }
 
-
-- (IBAction)didChangeSegmentControl:(UISegmentedControl *)control {
-if([segmentedControl selectedSegmentIndex]==0)
+-(IBAction)btnsignIn:(id)sender
 {
-       [signInView setHidden:NO];
-       [signUpView setHidden:YES];
+     btnSignImage.titleLabel.font=[UIFont fontWithName:@"Helvetica Bold 15.0" size:12.0f];
+    [btnSignImage setTitle:@"Sign In" forState:UIControlStateNormal];
+   
+    [btnSignImage setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@""]]];
+    [btnSignUpImage setTitle:@"" forState:UIControlStateNormal];
+    btnSignUpImage.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"register-hover-bg-text.png"]];
+    [signInView setHidden:NO];
+    [signUpView setHidden:YES];
 }
-    else if([segmentedControl selectedSegmentIndex]==1)
-    {
-        [signInView setHidden:YES];
-        [signUpView setHidden:NO];
-    }
+
+-(IBAction)btnsignUp:(id)sender
+{
+//    Helvetica Bold 15.0
+      btnSignUpImage.titleLabel.font=[UIFont fontWithName:@"Helvetica Bold 15.0" size:12.0f];
+//      [btnSignUpImage setBackgroundColor:[UIFont fontWithName:@"Helvetica Bold 15.0" size:12.0f];
+    [btnSignUpImage setTitle:@"Register" forState:UIControlStateNormal];
+    [btnSignImage setTitle:@"" forState:UIControlStateNormal];
+    [btnSignUpImage setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@""]]];
+    [btnSignImage setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"signin-hover-bg-text.png"]]];
+    
+    [signInView setHidden:YES];
+    [signUpView setHidden:NO];
 }
+
+//- (IBAction)didChangeSegmentControl:(UISegmentedControl *)control {
+//     if([segmentedControl selectedSegmentIndex]==0)
+//     {
+//       [signInView setHidden:NO];
+//       [signUpView setHidden:YES];
+//     }
+//    else if([segmentedControl selectedSegmentIndex]==1)
+//    {
+//        [signInView setHidden:YES];
+//        [signUpView setHidden:NO];
+//    }
+//}
 
 -(IBAction)ClickedSignUp:(id)sender
 {
-    if([txtConfirmPassword.text isEqualToString:@""]||[txtEmailId.text isEqualToString:@""]||[txtfirstname.text isEqualToString:@""]||[txtlastname.text isEqualToString:@""]||[txtPassword.text isEqualToString:@""]||[strGender isEqualToString:@""])
+    NSLog(@"StrGender %@",strGender);
+    if([txtConfirmPassword.text isEqualToString:@""]||[txtEmailId.text isEqualToString:@""]||[txtfirstname.text isEqualToString:@""]||[txtlastname.text isEqualToString:@""]||[txtPassword.text isEqualToString:@""]||[strGender isEqualToString:@""]||[strGender isEqualToString:@"null"])
     {
         // show alert on empty fields
         UIAlertView *showEmptyField=[[UIAlertView alloc]initWithTitle:@"nehru" message:@"Fields cannot be left blank" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [showEmptyField show];
+    }
+    else if(![self validateEmailWithString:txtEmailId.text])
+    {
+        UIAlertView *showEmptyField=[[UIAlertView alloc]initWithTitle:@"Wrong Information" message:@"Email Id is not in correct format" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [showEmptyField show];
     }
     else {
@@ -137,7 +179,17 @@ if([segmentedControl selectedSegmentIndex]==0)
                         if(succeeded){
                             NSLog(@"Successfull SignUp");
                             UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Successfull SignUp" message:@"Successfull SignUp" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                            alert.tag=34559;
                             [alert show];
+                            
+                            NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
+                            [userDefaults setObject:txtEmailId.text forKey:@"UserId"];
+                            [userDefaults setObject:txtfirstname.text forKey:@"firstName"];
+                            [userDefaults setObject:txtlastname.text forKey:@"lastName"];
+                            [userDefaults setObject:txtEmailId.text forKey:@"emailId"];
+                            [userDefaults synchronize];
+                            
+                            [self ResignKeys];
                         }
                         else{
 //                            NSLog(@"Sorry we were not able to sign up");
@@ -160,11 +212,33 @@ if([segmentedControl selectedSegmentIndex]==0)
     }
 }
 
+- (BOOL)validateEmailWithString:(NSString*)email
+{
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:email];
+}
+
+-(void)ResignKeys
+{
+    txtPassword.text=@"";
+    txtlastname.text=@"";
+    txtEmailId.text=@"";
+    txtConfirmPassword.text=@"";
+    txtfirstname.text=@"";
+    [txtConfirmPassword resignFirstResponder];
+    [txtEmailId resignFirstResponder];
+    [txtfirstname resignFirstResponder];
+    [txtlastname resignFirstResponder];
+    [txtPassword resignFirstResponder];
+}
+
 -(IBAction)ClickedSignIn:(id)sender
 {
     if([signInEmailId.text isEqualToString:@""]||[signInPassword.text isEqualToString:@""]){
         // show alert on empty fields
         UIAlertView *showEmptyField=[[UIAlertView alloc]initWithTitle:@"nehru" message:@"Fields cannot be left empty" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        
         [showEmptyField show];
     }
     else{
@@ -187,7 +261,6 @@ if([segmentedControl selectedSegmentIndex]==0)
                     [userDefaults setObject:AppUser[@"firstName"] forKey:@"firstName"];
                     [userDefaults setObject:AppUser[@"lastName"] forKey:@"lastName"];
                     [userDefaults setObject:AppUser[@"emailId"] forKey:@"emailId"];
-//                    [userDefaults setObject:AppUser[@""] forKey:<#(NSString *)#>]
                     [userDefaults synchronize];
                     //here getting the user Image back on the screen.
                     PFFile *userImageFile = AppUser[@"UserPhoto"];
@@ -204,6 +277,7 @@ if([segmentedControl selectedSegmentIndex]==0)
                     }];
                     
                     UIAlertView *alertview=[[UIAlertView alloc]initWithTitle:@"Success" message:@"Successfull Login" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:Nil, nil];
+                    alertview.tag=100867;
                     [alertview show];
                     signInPassword.text=@"";
                     signInEmailId.text=@"";
@@ -231,6 +305,52 @@ if([segmentedControl selectedSegmentIndex]==0)
     [choosePhotoBtn setImage:image forState:UIControlStateHighlighted];
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(alertView.tag==100867)
+    {
+    if(buttonIndex ==0)
+    {
+        // Get views. controllerIndex is passed in as the controller we want to go to.
+        UIView * fromView = self.tabBarController.selectedViewController.view;
+        UIView * toView = [[self.tabBarController.viewControllers objectAtIndex:0] view];
+        
+        // Transition using a page curl.
+        [UIView transitionFromView:fromView
+                            toView:toView
+                          duration:1.0
+                           options:(2 >self.tabBarController.selectedIndex ? UIViewAnimationOptionTransitionFlipFromLeft : UIViewAnimationTransitionFlipFromLeft)
+                        completion:^(BOOL finished) {
+                            if (finished) {
+                                self.tabBarController.selectedIndex = 0;
+                            }
+                        }];
+    }
+    }
+    if(alertView.tag==34559)
+    {
+     if(buttonIndex ==0)
+      {
+          // Get views. controllerIndex is passed in as the controller we want to go to.
+          UIView * fromView = self.tabBarController.selectedViewController.view;
+          UIView * toView = [[self.tabBarController.viewControllers objectAtIndex:0] view];
+          
+          // Transition using a page curl.
+          [UIView transitionFromView:fromView
+                              toView:toView
+                            duration:1.0
+                             options:(2 >self.tabBarController.selectedIndex ? UIViewAnimationOptionTransitionFlipFromLeft : UIViewAnimationTransitionFlipFromLeft)
+                          completion:^(BOOL finished) {
+                              if (finished) {
+                                  self.tabBarController.selectedIndex = 0;
+                              }
+                          }];
+         NSLog(@"Do Nothing");
+      }
+    }
+    [alertView dismissWithClickedButtonIndex:0 animated:YES];
+}
+
 -(IBAction) getPhoto:(id) sender {
 	UIImagePickerController * picker = [[UIImagePickerController alloc] init];
 	picker.delegate = self;
@@ -253,16 +373,7 @@ if([segmentedControl selectedSegmentIndex]==0)
 // became first responder
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    if(textField==txtlastname)
-    {
-        [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:0.5];
-        [UIView setAnimationDelay:1.0];
-        [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-        
-        self.view.frame=CGRectMake(0,0,-40,420);
-        [UIView commitAnimations];
-    }
+
 }
 
 // return YES to allow editing to stop and to resign first responder status. NO to disallow the editing session to end

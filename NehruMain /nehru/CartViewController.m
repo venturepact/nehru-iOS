@@ -124,6 +124,8 @@
     mainTableCell.lblPriceOfProduct.text=[NSString stringWithFormat:@"$%0.2f",Objdataproduct.productUnitprice];
     mainTableCell.lblproductModel.text=[NSString stringWithFormat:@"%@",Objdataproduct.ProductModel];
     mainTableCell.lblTotalprice.text=[NSString stringWithFormat:@"%0.2f",Objdataproduct.productSubTotal];
+    mainTableCell.lblproductColor.text=[NSString stringWithFormat:@"%@",Objdataproduct.productColor];
+    mainTableCell.lblproductSize.text=[NSString stringWithFormat:@"%@",Objdataproduct.productSize];
     return mainTableCell;
     }
     return tblViewCell;

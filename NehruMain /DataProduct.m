@@ -22,4 +22,6 @@
 @synthesize ArrProductSizes;
 @synthesize CartTotal;
 @synthesize isfavorite;
+@synthesize productColor;
+@synthesize productSize;
 @end
