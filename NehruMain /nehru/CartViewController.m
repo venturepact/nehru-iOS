@@ -39,10 +39,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    UIImageView *titleimage=[[UIImageView alloc]initWithFrame:CGRectMake( 0,0,105,35 )];
-    titleimage.image=[UIImage imageNamed:@"nehru-logo.png"];
-    self.navigationItem.titleView=titleimage;
-    
     // Get the size of the main screen
    /* CGRect fullScreenRect = [[UIScreen mainScreen]bounds];
     
@@ -53,6 +49,7 @@
     [[((UITabBarController *)self.parentViewController).view.subviews objectAtIndex:0] setFrame:fullScreenRect];
     
     */
+   
 }
 
 -(void)viewWillAppear:(BOOL)animated
