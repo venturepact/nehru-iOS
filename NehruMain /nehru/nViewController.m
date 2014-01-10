@@ -10,9 +10,7 @@
 #import "ProductListingViewController.h"
 
 @interface nViewController ()
-{
-    ProductListingViewController *proListController;
-}
+
 @end
 
 @implementation nViewController
@@ -20,22 +18,6 @@
 #pragma mark View Methods
 
 -(void)viewDidAppear:(BOOL)animated{
-//    [UIView beginAnimations:nil context:NULL];
-//    
-//    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-//    [UIView setAnimationDuration:1.5f];
-//    [UIView setAnimationDelegate:self];
-//    //[UIView setAnimationRepeatCount:1e100f];  //coutless
-//    [UIView setAnimationRepeatCount:1];   // 1 time
-//    //[UIView setAnimationRepeatAutoreverses:YES];
-//    
-//    
-//    mTagImage.frame = CGRectMake(55, 235, 230, 149);
-//    mTagImage.transform = CGAffineTransformMakeRotation(100.2f);
-//    
-//    [UIView commitAnimations];
-//    
-    
     if(isComingBack){
         dispatch_resume(nTimer);
     }
@@ -46,28 +28,16 @@
     mTagImage.frame = CGRectMake(55, 235, 230, 149);
 
     NSUserDefaults *Defaults=[NSUserDefaults standardUserDefaults];
-    NSString *emailaddress= [Defaults valueForKey:@"emailid"];
-     NSLog(@"email address %@",emailaddress);
-    
-    [mainViewForProfile setHidden:YES];
-    if([emailaddress isEqualToString:@""])
-    {
-        NSLog(@"NS Null class ");
-    }
-    emailaddress=  [emailaddress stringByReplacingOccurrencesOfString:@"(" withString:@""];
+    NSString *emailaddress= [[Defaults valueForKey:@"emailId"]mutableCopy];
     NSLog(@"email address %@",emailaddress);
-    
-    NSLog(@"Email address %@",emailaddress);
-    NSString *gendertext=[Defaults objectForKey:@""];
-    NSLog(@"Gender Text %@",gendertext);
-    
-    NSMutableString *s = [NSMutableString stringWithString:@"(null)"];
-    NSRange start = [s rangeOfString:@"("];
-    NSRange end = [s rangeOfString:@")"];
-    [s deleteCharactersInRange:(NSRange){ start.location, end.location - start.location + 1}];
-    NSLog(@" %@",s);
-    
-  /* if([emailaddress isEqualToString:@""]||[emailaddress isEqualToString:Nil])
+    NSString *gendertext=[[Defaults valueForKey:@"Female"]mutableCopy];
+    if(emailaddress.class ==NULL)
+    {
+        NSLog(@"It is kind of NSNull class.");
+        emailaddress=@"null";
+    }
+ UserPhoto.image=[UIImage imageNamed:@"female.png"];
+   if([emailaddress isEqualToString:@"null"]||[emailaddress isEqualToString:Nil])
     {
         [mainViewForProfile setHidden:YES];
     }
@@ -76,13 +46,18 @@
         [mainViewForProfile setHidden:NO];
         if([gendertext isEqualToString:@"Female"])
         {
-            UserPhoto.image=[UIImage imageNamed:@"Female-placeholder.png"];
+            UserPhoto.image=[UIImage imageNamed:@"female.png"];
+           
         }
         else
         {
-            UserPhoto.image=[UIImage imageNamed:@"placeholder.png"];
+            UserPhoto.image=[UIImage imageNamed:@"male.png"];
         }
-    }*/
+        lblusername.text =[NSString stringWithFormat:@"%@ %@",[Defaults valueForKey:@"firstName"],[Defaults valueForKey:@"lastName"]];
+        
+        lblemailid.text=[NSString stringWithFormat:@"%@",[Defaults valueForKey:@"emailId"]];
+    }
+    
 //    if(IS_IPHONE_5)
 //    {
 //        bckgImage.frame=CGRectMake(0, 0,320,568);
@@ -104,18 +79,11 @@
 }
 
 
-- (void)viewDidLoad
+-(void)initialView
 {
-    [super viewDidLoad];
-    //user interaction for UItabBarController
-
-    UIImageView *imageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"nehru-logo.png"]];
-    self.navigationItem.titleView=imageView;
-    proListController = [[ProductListingViewController alloc]init];
+    mTagImage.frame = CGRectMake(55, 235, 230, 149);
     
-    //Tab bar user Interaction
-    
-     [[[[self.tabBarController tabBar]items]objectAtIndex:1]setEnabled:FALSE];
+    [[[[self.tabBarController tabBar]items]objectAtIndex:1]setEnabled:FALSE];
     
     txtPassword.text=@"";
     txtlastname.text=@"";
@@ -123,12 +91,75 @@
     txtConfirmPassword.text=@"";
     txtfirstname.text=@"";
     
-    [btnSignImage setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"signin-hover-bg-text.png"]]];
-    [btnSignUpImage setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@""]]];
+    [btnSignImage setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@""]]];
+    [btnSignUpImage setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"register-hover-bg-text.png"]]];
     
-    [btnSignImage setTitle:@"" forState:UIControlStateNormal];
+    [btnSignImage setTitle:@"SignIn" forState:UIControlStateNormal];
+    [btnSignUpImage setTitle:@"" forState:UIControlStateNormal];
+
+    
+    NSUserDefaults *Defaults=[NSUserDefaults standardUserDefaults];
+    NSString *emailaddress= [[Defaults valueForKey:@"emailId"]mutableCopy];
+    NSLog(@"email address %@",emailaddress);
+    NSString *gendertext=[Defaults valueForKey:@"Gender"];
+    if(emailaddress.class ==NULL)
+    {
+        NSLog(@"It is kind of NSNull class.");
+        emailaddress=@"null";
+    }
+    
+    if([emailaddress isEqualToString:@"null"]||[emailaddress isEqualToString:Nil])
+    {
+        [mainViewForProfile setHidden:YES];
+    }
+    else
+    {
+        [[[[self.tabBarController tabBar]items]objectAtIndex:1]setEnabled:TRUE];
+        
+        [mainViewForProfile setHidden:NO];
+        if([gendertext isEqualToString:@"Female"])
+        {
+            [UserPhoto setImage:[UIImage imageNamed:@"female.png"]];
+        }
+        else
+        {
+            UserPhoto.image=[UIImage imageNamed:@"male.png"];
+        }
+        lblusername.text =[NSString stringWithFormat:@"%@ %@",[Defaults valueForKey:@"firstName"],[Defaults valueForKey:@"lastName"]];
+        
+        lblemailid.text=[NSString stringWithFormat:@"%@",[Defaults valueForKey:@"emailId"]];
+    }
+
+    
+    }
+
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    //user interaction for UItabBarController
+
+    [self initialView];
+    
+    UIImageView *imageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"nehru-logo.png"]];
+    self.navigationItem.titleView=imageView;
+    
+    //Tab bar user Interaction
+    
+    /* [[[[self.tabBarController tabBar]items]objectAtIndex:1]setEnabled:FALSE];
+    
+    txtPassword.text=@"";
+    txtlastname.text=@"";
+    txtEmailId.text=@"";
+    txtConfirmPassword.text=@"";
+    txtfirstname.text=@"";
+    
+    [btnSignImage setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@""]]];
+    [btnSignUpImage setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"register-hover-bg-text.png"]]];
+    
+    [btnSignImage setTitle:@"SignIn" forState:UIControlStateNormal];
     [btnSignUpImage setTitle:@"Register" forState:UIControlStateNormal];
-    
+    */
    /* static int i=0;
     bckgImages=[NSArray arrayWithObjects:@"bg1.jpg",@"bg2.jpg",@"bg3.jpg",@"bg4.jpg",@"bg5.jpg",@"bg6.jpg",nil];
     
@@ -184,9 +215,7 @@
 
 -(IBAction)btnsignUp:(id)sender
 {
-//    Helvetica Bold 15.0
-      btnSignUpImage.titleLabel.font=[UIFont fontWithName:@"Helvetica Bold 15.0" size:12.0f];
-//      [btnSignUpImage setBackgroundColor:[UIFont fontWithName:@"Helvetica Bold 15.0" size:12.0f];
+    btnSignUpImage.titleLabel.font=[UIFont fontWithName:@"Helvetica Bold 15.0" size:12.0f];
     [btnSignUpImage setTitle:@"Register" forState:UIControlStateNormal];
     [btnSignImage setTitle:@"" forState:UIControlStateNormal];
     [btnSignUpImage setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@""]]];
@@ -212,11 +241,19 @@
 -(IBAction)ClickedSignUp:(id)sender
 {
     NSLog(@"StrGender %@",strGender);
-    if([txtConfirmPassword.text isEqualToString:@""]||[txtEmailId.text isEqualToString:@""]||[txtfirstname.text isEqualToString:@""]||[txtlastname.text isEqualToString:@""]||[txtPassword.text isEqualToString:@""]||[strGender isEqualToString:@""]||[strGender isEqualToString:@"null"])
+    if([txtConfirmPassword.text isEqualToString:@""]||[txtEmailId.text isEqualToString:@""]||[txtfirstname.text isEqualToString:@""]||[txtlastname.text isEqualToString:@""]||[txtPassword.text isEqualToString:@""]||[strGender isEqualToString:@""]||strGender.class == NULL)
     {
         // show alert on empty fields
+        if(strGender.class==NULL)
+        {
+            UIAlertView *showEmptyField=[[UIAlertView alloc]initWithTitle:@"nehru" message:@"Select gender" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [showEmptyField show];
+        }
+        else
+        {
         UIAlertView *showEmptyField=[[UIAlertView alloc]initWithTitle:@"nehru" message:@"Fields cannot be left blank" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [showEmptyField show];
+        }
     }
     else if(![self validateEmailWithString:txtEmailId.text])
     {
@@ -236,8 +273,8 @@
             }
             else{
                 PFObject *usrSignUp=[PFObject objectWithClassName:@"NehruUser"];
-                [usrSignUp setValue:txtfirstname.text forKey:@"firstName"];
-                [usrSignUp setValue:txtlastname.text forKey:@"lastName"];
+                [usrSignUp setObject:txtfirstname.text forKey:@"firstName"];
+                [usrSignUp setObject:txtlastname.text forKey:@"lastName"];
                 [usrSignUp setObject:txtEmailId.text forKey:@"emailId"];
                 [usrSignUp setObject:txtPassword.text forKey:@"userPassword"];
                 [usrSignUp setObject:strGender forKey:@"Gender"];
@@ -251,10 +288,10 @@
                             [alert show];
                             
                             NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
-//                            [userDefaults setObject:txtEmailId.text forKey:@"UserId"];
-                            [userDefaults setObject:txtfirstname.text forKey:@"firstName"];
-                            [userDefaults setObject:txtlastname.text forKey:@"lastName"];
-                            [userDefaults setObject:txtEmailId.text forKey:@"emailId"];
+//                          [userDefaults setObject:txtEmailId.text forKey:@"UserId"];
+                            [userDefaults setValue:txtfirstname.text forKey:@"firstName"];
+                            [userDefaults setValue:txtlastname.text forKey:@"lastName"];
+                            [userDefaults setValue:txtEmailId.text forKey:@"emailId"];
                             [userDefaults synchronize];
                             
                             [self ResignKeys];
@@ -282,7 +319,10 @@
 
 -(IBAction)ClickedSignOutBtn:(id)sender
 {
+    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
     
+    [self initialView];
 }
 
 - (BOOL)validateEmailWithString:(NSString*)email
@@ -329,23 +369,31 @@
                 else if(objects.count==1){
                     PFObject *AppUser=[objects objectAtIndex:0];
                     NSLog(@"App User %@",AppUser);
+                    NSString *str1=AppUser[@"objectId"];
+                    NSString *str2=AppUser[@"firstName"];
+                    NSString *str3=AppUser[@"lastName"];
+                    NSString *str4=AppUser[@"emailId"];
+                    NSString *str5=AppUser[@"Gender"];
                     NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
-                    [userDefaults setValue:AppUser[@"objectId"] forKey:@"UserId"];
-                    [userDefaults setValue:AppUser[@"firstName"] forKey:@"firstName"];
-                    [userDefaults setValue:AppUser[@"lastName"] forKey:@"lastName"];
-                    [userDefaults setValue:AppUser[@"emailId"] forKey:@"emailId"];
+                    [userDefaults setValue:str1 forKey:@"UserId"];
+                    [userDefaults setValue:str2 forKey:@"firstName"];
+                    [userDefaults setValue:str3 forKey:@"lastName"];
+                    [userDefaults setValue:str4 forKey:@"emailId"];
+                    [userDefaults setValue:str5 forKey:@"Gender"];
                     [userDefaults synchronize];
+                                       
+                    [userDefaults valueForKey:@"emailId"];
+                    NSLog(@"User Defaults %@",userDefaults);
                     //here getting the user Image back on the screen.
                     PFFile *userImageFile = AppUser[@"UserPhoto"];
                     [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
                         if (!error) {
-                            
-                            NSLog(@"Image Data %@",imageData);
+//                            NSLog(@"Image Data %@",imageData);
                             //NSData *image = [imageData getData];
                             UIImage *image = [UIImage imageWithData:imageData];
-                            NSLog(@"Image %@",image);
+//                            NSLog(@"Image %@",image);
                             UserImgVIew.image = image;
-                            NSLog(@"Image file %@",UserImgVIew.image);
+//                            NSLog(@"Image file %@",UserImgVIew.image);
                         }
                     }];
                     

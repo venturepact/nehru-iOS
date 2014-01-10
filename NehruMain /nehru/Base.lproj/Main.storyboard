@@ -151,6 +151,7 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="FirstName" minimumFontSize="17" id="71v-wr-M35">
                                         <rect key="frame" x="4" y="7" width="155" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
@@ -164,6 +165,7 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" minimumFontSize="17" id="hdu-31-4VU">
                                         <rect key="frame" x="159" y="7" width="155" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
@@ -177,6 +179,7 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email " minimumFontSize="17" id="dbj-0H-b7F">
                                         <rect key="frame" x="6" y="86" width="210" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
@@ -190,6 +193,7 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" id="kbC-su-Qzl">
                                         <rect key="frame" x="5" y="123" width="154" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                         <connections>
@@ -248,15 +252,17 @@
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Email address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ETw-lb-c8i">
-                                        <rect key="frame" x="11" y="239" width="289" height="40"/>
+                                        <rect key="frame" x="11" y="239" width="289" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="14"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TJa-9A-4XJ">
                                         <rect key="frame" x="11" y="201" width="289" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="14"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="wuy-x0-GuA">
@@ -266,28 +272,31 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="ClickedSignOutBtn:" destination="0pb-Td-ER1" eventType="touchUpInside" id="hb5-I5-gbR"/>
+                                        </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="xKY-yU-ZRH">
-                                        <rect key="frame" x="68" y="46" width="175" height="143"/>
+                                        <rect key="frame" x="68" y="46" width="150" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sign-green-bg.png" id="d6u-45-LRM">
                                         <rect key="frame" x="11" y="-5" width="298" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="GYS-k5-S7a">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textfield_border.png" id="GYS-k5-S7a">
                                         <rect key="frame" x="11" y="231" width="289" height="1"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="NMu-Mg-BfY">
-                                        <rect key="frame" x="11" y="278" width="289" height="1"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textfield_border.png" id="NMu-Mg-BfY">
+                                        <rect key="frame" x="11" y="279" width="289" height="1"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </imageView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile Details" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1ie-aR-bFk">
-                                        <rect key="frame" x="58" y="9" width="218" height="34"/>
+                                        <rect key="frame" x="58" y="6" width="218" height="34"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                        <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -309,8 +318,11 @@
                         <outlet property="btnRegister" destination="aeo-BE-SqR" id="OIn-g8-dcu"/>
                         <outlet property="btnSignImage" destination="ZqY-jy-lXP" id="16r-Ob-XR0"/>
                         <outlet property="btnSignIn" destination="3JT-sb-T7C" id="YMS-vp-c1i"/>
+                        <outlet property="btnSignOut" destination="wuy-x0-GuA" id="HgR-k8-KZc"/>
                         <outlet property="btnSignUpImage" destination="VzU-Xa-x0G" id="h4R-dP-zqV"/>
                         <outlet property="choosePhotoBtn" destination="mxH-hm-B0e" id="K6u-Qi-Gwn"/>
+                        <outlet property="lblemailid" destination="ETw-lb-c8i" id="ytE-MF-1Ih"/>
+                        <outlet property="lblusername" destination="TJa-9A-4XJ" id="j7f-6I-Y4e"/>
                         <outlet property="mTagImage" destination="xes-9Q-7R7" id="SYQ-c1-eWh"/>
                         <outlet property="mainViewForProfile" destination="2Hw-4M-GC6" id="obi-Vk-UdM"/>
                         <outlet property="signInEmailId" destination="SDb-KX-IBm" id="ldP-Db-tOZ"/>
@@ -340,138 +352,161 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="2Zr-uc-0we">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" id="qfI-7r-aH0">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="1000"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pcF-fb-bgB">
-                                        <rect key="frame" x="15" y="130" width="84" height="21"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bw2-1F-gtD">
+                                        <rect key="frame" x="20" y="130" width="84" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shipping Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XLZ-5N-sLo">
-                                        <rect key="frame" x="14" y="197" width="99" height="21"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shipping Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yCH-f4-4WE">
+                                        <rect key="frame" x="20" y="197" width="99" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fq8-0x-vsK">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DXB-AL-RQr">
                                         <rect key="frame" x="170" y="367" width="84" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iBo-xG-UEL">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Dth-5z-bUE">
                                         <rect key="frame" x="15" y="294" width="84" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="State" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Kp7-fJ-zDx">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="State" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0XB-T3-ENY">
                                         <rect key="frame" x="14" y="367" width="84" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="g3u-3A-yTh">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="ZhR-bE-G7q">
                                         <rect key="frame" x="14" y="329" width="140" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
-                                            <outlet property="delegate" destination="GJW-jH-XZF" id="YQM-SB-ml7"/>
+                                            <outlet property="delegate" destination="GJW-jH-XZF" id="WbB-lN-RJE"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="ACH-Qn-Skt">
-                                        <rect key="frame" x="8" y="159" width="306" height="30"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textfield_border.png" id="fTP-zn-L24">
+                                        <rect key="frame" x="15" y="359" width="139" height="1"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textfield_border.png" id="fAy-QU-GVC">
+                                        <rect key="frame" x="170" y="359" width="139" height="1"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="Hmb-9Q-0lf">
+                                        <rect key="frame" x="20" y="159" width="280" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
-                                            <outlet property="delegate" destination="GJW-jH-XZF" id="J0f-7r-1jP"/>
+                                            <outlet property="delegate" destination="GJW-jH-XZF" id="gHx-ik-xvz"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="2mV-MV-Mp9">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textfield_border.png" id="0ta-97-dbb">
+                                        <rect key="frame" x="20" y="189" width="280" height="1"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="eQJ-XK-wai">
                                         <rect key="frame" x="170" y="396" width="138" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
-                                            <outlet property="delegate" destination="GJW-jH-XZF" id="mZ8-Jo-GcS"/>
+                                            <outlet property="delegate" destination="GJW-jH-XZF" id="Q4v-Nd-ZNY"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="kEf-V3-Qhu">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="Ald-fO-i2n">
                                         <rect key="frame" x="14" y="396" width="140" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
-                                            <outlet property="delegate" destination="GJW-jH-XZF" id="ONm-fS-cjz"/>
+                                            <outlet property="delegate" destination="GJW-jH-XZF" id="8LG-Uy-vL0"/>
                                         </connections>
                                     </textField>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="VcR-Vw-RS2">
-                                        <rect key="frame" x="9" y="218" width="304" height="68"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="8Jz-U0-N8d">
+                                        <rect key="frame" x="20" y="218" width="280" height="68"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="GJW-jH-XZF" id="Vv6-RP-bQQ"/>
-                                        </connections>
                                     </textView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gUa-G6-Kgt">
-                                        <rect key="frame" x="7" y="420" width="306" height="46"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textfield_border.png" id="qqX-zv-F0F">
+                                        <rect key="frame" x="20" y="286" width="280" height="1"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aYe-ec-QDf">
+                                        <rect key="frame" x="7" y="442" width="306" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <state key="normal" title="Save and Process Payment" backgroundImage="btn-checkout.png">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <connections>
-                                            <action selector="ClickedBtnSaveDetails:" destination="GJW-jH-XZF" eventType="touchUpInside" id="unv-VQ-blA"/>
-                                        </connections>
                                     </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zi4-Xy-s3J">
-                                        <rect key="frame" x="8" y="63" width="145" height="21"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NWB-qk-bvB">
+                                        <rect key="frame" x="20" y="55" width="145" height="21"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="5lA-pg-CVw">
-                                        <rect key="frame" x="8" y="92" width="306" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="gXO-rl-4jd">
+                                        <rect key="frame" x="20" y="85" width="280" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
-                                            <outlet property="delegate" destination="GJW-jH-XZF" id="zlz-OY-ZaX"/>
+                                            <outlet property="delegate" destination="GJW-jH-XZF" id="ae1-lU-y9T"/>
                                         </connections>
                                     </textField>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Vds-A4-c8X">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qIF-jZ-KAz">
                                         <rect key="frame" x="170" y="294" width="42" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="eMW-9P-DZX">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="VYp-Hk-XRb">
                                         <rect key="frame" x="170" y="329" width="138" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
-                                            <outlet property="delegate" destination="GJW-jH-XZF" id="k4d-Q7-Hv9"/>
+                                            <outlet property="delegate" destination="GJW-jH-XZF" id="EGc-8X-vv0"/>
                                         </connections>
                                     </textField>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shipping Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="znx-jX-CnS">
-                                        <rect key="frame" x="71" y="20" width="168" height="32"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shipping Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ftw-Z0-5lt">
+                                        <rect key="frame" x="71" y="7" width="168" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textfield_border.png" id="fTZ-bB-hQD">
+                                        <rect key="frame" x="20" y="114" width="280" height="1"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textfield_border.png" id="YZv-Ki-ke9">
+                                        <rect key="frame" x="15" y="426" width="139" height="1"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textfield_border.png" id="MJq-5Y-kCZ">
+                                        <rect key="frame" x="170" y="426" width="139" height="1"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <inset key="contentInset" minX="0.0" minY="0.0" maxX="0.0" maxY="40"/>
                                 <connections>
-                                    <outlet property="delegate" destination="GJW-jH-XZF" id="IrO-vC-4rv"/>
+                                    <outlet property="delegate" destination="GJW-jH-XZF" id="BhF-8c-wRR"/>
                                 </connections>
                             </scrollView>
                         </subviews>
@@ -480,20 +515,20 @@
                     <navigationItem key="navigationItem" id="Hhv-au-AQX"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="backgScroll" destination="2Zr-uc-0we" id="7fl-bg-aSW"/>
-                        <outlet property="btnsave" destination="gUa-G6-Kgt" id="krx-Ip-snM"/>
-                        <outlet property="txtCity" destination="g3u-3A-yTh" id="JzB-JH-wtw"/>
-                        <outlet property="txtCountry" destination="2mV-MV-Mp9" id="dta-1y-SOe"/>
-                        <outlet property="txtFullName" destination="ACH-Qn-Skt" id="PVv-BT-8WX"/>
-                        <outlet property="txtShippingaddress" destination="VcR-Vw-RS2" id="Jzy-LY-PbH"/>
-                        <outlet property="txtState" destination="kEf-V3-Qhu" id="GGk-Lb-f8i"/>
-                        <outlet property="txtemailAddress" destination="5lA-pg-CVw" id="96s-QT-TWm"/>
-                        <outlet property="txtphone" destination="eMW-9P-DZX" id="6aJ-ML-Bpd"/>
+                        <outlet property="backgScroll" destination="qfI-7r-aH0" id="6iG-Md-0b3"/>
+                        <outlet property="btnsave" destination="aYe-ec-QDf" id="1e8-UC-mP7"/>
+                        <outlet property="txtCity" destination="ZhR-bE-G7q" id="JyM-AH-PAL"/>
+                        <outlet property="txtCountry" destination="eQJ-XK-wai" id="SN8-fe-tM3"/>
+                        <outlet property="txtFullName" destination="Hmb-9Q-0lf" id="Jo7-0d-SNE"/>
+                        <outlet property="txtShippingaddress" destination="8Jz-U0-N8d" id="RMT-FI-Qps"/>
+                        <outlet property="txtState" destination="Ald-fO-i2n" id="F5N-25-o7c"/>
+                        <outlet property="txtemailAddress" destination="gXO-rl-4jd" id="3NJ-n3-ZXA"/>
+                        <outlet property="txtphone" destination="VYp-Hk-XRb" id="1bF-Ye-TcD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yz0-Ze-dpH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="236" y="1018"/>
+            <point key="canvasLocation" x="328" y="913"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="gBB-9b-10m">
@@ -515,7 +550,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bC1-Y9-0wh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1452" y="362"/>
+            <point key="canvasLocation" x="-706" y="278"/>
         </scene>
         <!--Navigation Controller - Explore-->
         <scene sceneID="M2Y-Pf-UF5">
@@ -733,7 +768,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cfz-Fp-pFs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="344" y="-369"/>
+            <point key="canvasLocation" x="328" y="-336"/>
         </scene>
         <!--Navigation Controller - User-->
         <scene sceneID="Vjg-7T-7cc">
@@ -1027,7 +1062,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter email address" minimumFontSize="17" clearButtonMode="whileEditing" id="2Ne-Zg-c8M">
                                 <rect key="frame" x="35" y="69" width="257" height="30"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="wUZ-7z-pzI" id="7bq-fc-CHk"/>
@@ -1068,7 +1103,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter new password" minimumFontSize="17" clearButtonMode="whileEditing" id="KOY-R1-NxE">
                                 <rect key="frame" x="38" y="160" width="257" height="30"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="wUZ-7z-pzI" id="FdO-1l-Hbq"/>
@@ -1077,7 +1112,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Confirm Password" minimumFontSize="17" clearButtonMode="whileEditing" id="wn6-HP-oXV">
                                 <rect key="frame" x="35" y="256" width="257" height="30"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="wUZ-7z-pzI" id="LNg-6V-1oD"/>
@@ -1217,7 +1252,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o5j-v1-Msu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="722" y="1018"/>
+            <point key="canvasLocation" x="768" y="913"/>
         </scene>
         <!--Page Flipping View Controller - Nehru Jackets-->
         <scene sceneID="PLd-oe-kBR">
@@ -1277,18 +1312,25 @@
                                                     <action selector="actionViewLoader:" destination="lDJ-sf-aUw" eventType="touchUpInside" id="i2Q-Dh-Hpb"/>
                                                 </connections>
                                             </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cart-transparent-bg.png" id="fe0-ov-PDf">
-                                                <rect key="frame" x="7" y="8" width="307" height="32"/>
+                                            <view contentMode="scaleToFill" id="f80-OG-TCu">
+                                                <rect key="frame" x="7" y="-35" width="307" height="32"/>
                                                 <autoresizingMask key="autoresizingMask"/>
-                                            </imageView>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ery-vz-mi2">
-                                                <rect key="frame" x="12" y="4" width="307" height="32"/>
-                                                <autoresizingMask key="autoresizingMask"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cart-transparent-bg.png" id="fe0-ov-PDf">
+                                                        <rect key="frame" x="0.0" y="0.0" width="307" height="32"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                    </imageView>
+                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ery-vz-mi2">
+                                                        <rect key="frame" x="5" y="0.0" width="307" height="32"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="22"/>
+                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            </view>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tYt-kY-l3u">
                                                 <rect key="frame" x="243" y="192" width="62" height="25"/>
                                                 <autoresizingMask key="autoresizingMask"/>
@@ -1442,6 +1484,7 @@
                         <outlet property="mTblColors" destination="tbu-5h-gKK" id="UWG-Gm-U4g"/>
                         <outlet property="mTblSizes" destination="yC7-1r-CZV" id="uZz-la-1Wz"/>
                         <outlet property="mViewColor" destination="eBJ-yV-fOm" id="NAx-tU-l6l"/>
+                        <outlet property="mViewProdctName" destination="f80-OG-TCu" id="piv-71-hCa"/>
                         <outlet property="mViewSize" destination="siV-gc-Nih" id="0Zk-az-NB8"/>
                         <outlet property="pageControl" destination="9nA-On-Avd" id="By0-x3-TWL"/>
                         <outlet property="productName" destination="ery-vz-mi2" id="OdO-aK-NZR"/>
@@ -1458,7 +1501,7 @@
                     </state>
                 </button>
             </objects>
-            <point key="canvasLocation" x="722" y="-369"/>
+            <point key="canvasLocation" x="768" y="-336"/>
         </scene>
     </scenes>
     <resources>

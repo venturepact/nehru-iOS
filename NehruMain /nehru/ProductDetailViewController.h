@@ -43,19 +43,27 @@
     
     NSMutableArray *ArrProductSizes;
     NSMutableArray *ArrProductColors;
-   NSTimer *_timer;
+    
+    NSMutableArray *mArrColors;
+    NSMutableArray *mArrSizes;
+    
+    NSMutableArray *ArrProductSizeIds;
+    NSMutableArray *ArrProductColorIds;
+    
+    NSTimer *_timer;
     IBOutlet UILabel *lblPriceProduct;
     IBOutlet UIView *imageView;
     IBOutlet UIButton *AddBtnwishlist;
     IBOutlet UIImageView *mProdctImage;
     IBOutlet UITableView *mTblColors;
     IBOutlet UITableView *mTblSizes;
-    NSMutableArray *mArrColors;
-    NSMutableArray *mArrSizes;
+  
     IBOutlet UIView *mViewColor;
     IBOutlet UIView *mViewSize;
     IBOutlet UIActivityIndicatorView *activityViewCart;
     IBOutlet UIButton *mBtnInCart;
+    
+    IBOutlet UIView *mViewProdctName;
 }
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) IBOutlet UIPageControl *pageControl;
@@ -66,7 +74,7 @@
 @property(nonatomic,strong)DataProduct *dataproduct;
 @property(nonatomic,strong)DataMyCart *datamyCart;
 
-// UIViews on the page
+//UIViews on the page
 @property(weak) IBOutlet UIView *itemNameView;
 @property(weak) IBOutlet UIView *itemDescView;
 @property(weak) IBOutlet UIView *itemColorView;

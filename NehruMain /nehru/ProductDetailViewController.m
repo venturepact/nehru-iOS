@@ -80,24 +80,86 @@
     NSLog(@"Product %@",self.dataproduct.ProductId);
     // Set up the content size of the scroll view
     self.backgScroll.contentSize=CGSizeMake(320, 500);
+    
+//    UITapGestureRecognizer *singleFingerTap =
+//    [[UITapGestureRecognizer alloc] initWithTarget:self
+//                                            action:@selector(handleSingleTap)];
+//    [self.view addGestureRecognizer:singleFingerTap];
+}
+
+-(void)handleSingleTap {
+    
+    [UIView beginAnimations:nil context:NULL];
+    
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    [UIView setAnimationDuration:1.0];
+    [UIView setAnimationDelegate:self];
+    //[UIView setAnimationRepeatCount:1e100f];  //coutless
+    [UIView setAnimationRepeatCount:1];   // 1 time
+    //[UIView setAnimationRepeatAutoreverses:YES];
+    mViewProdctName.frame = CGRectMake(6 , 5, 307, 32);
+    
+    if (_timer==Nil) {
+        _timer = [NSTimer scheduledTimerWithTimeInterval:5.0f target:self selector:@selector(showView) userInfo:Nil repeats:1 ];
+    }
+    mViewProdctName.transform = CGAffineTransformMakeRotation(0);
+    
+    [UIView commitAnimations];
+}
+
+-(void)showView {
+    mViewProdctName.frame = CGRectMake(6 , -100, 307, 32);
 }
 
 -(void)GetAllProductSizeAvailable
 {
     NSLog(@"Data product Id %@",self.dataproduct.ProductId);
-    ArrProductSizes=[[NSMutableArray alloc]init];
+    mArrSizes=[[NSMutableArray alloc]init];
+    ArrProductSizeIds =[[NSMutableArray alloc]init];
     PFQuery *query = [PFQuery queryWithClassName:@"NehruProductSize"];
-    [query whereKey:@"ProductId" equalTo:self.dataproduct.ProductId];
+//    [query whereKey:@"ProductId" equalTo:self.dataproduct.ProductId];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            // Do something with the found objects.
+            for (PFObject *object in objects) {
+                
+//                NSString *productSizeName=object@""
+                //getting the category Name and Object Id's.
+                [mArrSizes addObject:object[@"ProductSize"]];
+                [ArrProductSizeIds addObject:object[@"objectId"]];
+                NSLog(@"Arr product Sizes %@",mArrSizes);
+                NSLog(@"Arr Product Size Ids %@",ArrProductSizeIds);
+            }
+            [self GetAllProductColorAvailable];
+            [mTblSizes reloadData];
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+}
+
+
+-(void)GetAllProductColorAvailable
+{
+    NSLog(@"Data product Id %@",self.dataproduct.ProductId);
+    mArrColors=[[NSMutableArray alloc]init];
+    ArrProductColorIds=[[NSMutableArray alloc]init];
+    PFQuery *query = [PFQuery queryWithClassName:@"NehruProductColor"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
             // Do something with the found objects
             for (PFObject *object in objects) {
                 //getting the category Name and Object Id's
-                [ArrProductSizes addObject:object[@"ProductSize"]];
-                NSLog(@"Arr product Sizes %@",ArrProductSizes);
-                [self GetAllProductColorAvailable];
+                [mArrColors addObject:object[@"ProductColor"]];
+                [ArrProductColorIds addObject:object[@"objectId"]];
+                NSLog(@"Arr product colors %@",mArrColors);
+                NSLog(@"Arr product Color Ids %@",ArrProductColorIds);
             }
+            [mTblColors reloadData];
         } else {
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
@@ -186,29 +248,6 @@
 }
 
 
--(void)GetAllProductColorAvailable
-{
-    NSLog(@"Data product Id %@",self.dataproduct.ProductId);
-    ArrProductColors=[[NSMutableArray alloc]init];
-    PFQuery *query = [PFQuery queryWithClassName:@"NehruProductColor"];
-    [query whereKey:@"productId" equalTo:self.dataproduct.ProductId];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            // The find succeeded.
-            
-            // Do something with the found objects
-            for (PFObject *object in objects) {
-                //getting the category Name and Object Id's
-                [ArrProductColors addObject:object[@"ProductColor"]];
-                NSLog(@"Arr product colors %@",ArrProductColors);
-            }
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
-}
-
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -243,7 +282,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     UIImageView *imageView1=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"nehru-logo.png"]];
     self.navigationItem.titleView=imageView1;
     
@@ -251,15 +289,15 @@
     isColour=NO;
     [mTblColors setHidden:YES];
     [mTblSizes setHidden:YES];
-//    [mTblSizes setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0,121,121)];
+//  [mTblSizes setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0,121,121)];
     [mViewColor setHidden:YES];
     [mViewSize setHidden:YES];
     [mBtnInCart setHidden:YES];
     [activityViewCart setHidden:YES];
     //Adding the viewed object into the DataHistory singleton class.
     //[mViewMainLoader setHidden:YES];
+    // btnImageProduct.imageView.image=[UIImage imageNamed:@"photo1.png"];
     
-//    btnImageProduct.imageView.image=[UIImage imageNamed:@"photo1.png"];
     mProdctImage.image =self.dataproduct.imgproduct;
    // btnImageProduct.backgroundColor=[UIColor colorWithPatternImage:self.dataproduct.imgproduct];
     NSLog(@"Dataproduct %@",self.dataproduct);
@@ -269,18 +307,11 @@
     
     self.itemSizeView.layer.borderColor=[UIColor lightGrayColor].CGColor;
     self.itemSizeView.layer.borderWidth=1.0f;
-    
-    arrofSize=[[NSMutableArray alloc]initWithObjects:@"Size 1",@"Size 2", nil];
-    arrofColor=[[NSMutableArray alloc]initWithObjects:@"Color 1",@"Color 2", nil];
-//    isSize=YES;
-    
     [self displayDataOnscreen];
-    
+
     mArrColors=[[NSMutableArray alloc]initWithObjects:@"White",@"Black",@"Red",@"Green",@"Blue", nil];
     mArrSizes = [[NSMutableArray alloc]initWithObjects:@"Small",@"Medium",@"Large",@"Extra Large",@"Extra Extra Large", nil];
-//    [self GetProductImagesFromParse];
-    
-    [self GetAllProductSizeAvailable];
+//    [self GetAllProductSizeAvailable];
 }
 
 -(void)GetProductImagesFromParse
@@ -295,7 +326,7 @@
         self.pageImages=[objProduct objectForKey:@"ProductImages"];
         NSInteger pageCount = self.pageImages.count;
         
-        // Set up the page control
+// Set up the page control
 //        self.pageControl.currentPage = 0;
 //        self.pageControl.numberOfPages = pageCount;
         
@@ -445,8 +476,8 @@
     lblproductModelName.font=[UIFont fontWithName:@"Calibri" size:12.0f];
     lblproductQuantity.text=[NSString stringWithFormat:@"%d",dataproduct.productquantity];
     lblproductQuantity.font=[UIFont fontWithName:@"Calibri" size:12.0f];
-     lblPriceProduct.font=[UIFont fontWithName:@"Calibri" size:12.0f];
-     lblPriceProduct.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"pro-price-bg.png"]];
+    lblPriceProduct.font=[UIFont fontWithName:@"Calibri" size:12.0f];
+    lblPriceProduct.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"pro-price-bg.png"]];
     lblPriceProduct.text=[NSString stringWithFormat:@"$% 0.2f",self.dataproduct.productUnitprice];
     productName.text=self.dataproduct.ProductName;
     productName.font=[UIFont fontWithName:@"Calibri" size:18.0f];
@@ -457,15 +488,13 @@
     NSMutableArray *arrimages=[[NSMutableArray alloc]init];
     arrimages=self.dataproduct.productImages;
     NSLog(@"Arr images %@",arrimages);
-     UIImage *image = [UIImage imageNamed:@"bg1.jpg"];
+    UIImage *image = [UIImage imageNamed:@"bg1.jpg"];
     UIImage *image1=[UIImage imageNamed:@"bg2.jpg"];
-    
     UIImage *image2=[UIImage imageNamed:@"bg3.jpg"];
-    
     UIImage *image3=[UIImage imageNamed:@"bg4.jpg"];
+    
     [self.pageImages addObject:image];
     [self.pageImages addObject:image1];
-    
     [self.pageImages addObject:image2];
     [self.pageImages addObject:image3];
     
@@ -711,6 +740,7 @@
 //    [self dismissPickerControl:view];
 //}
 //
+
 -(IBAction)ClickedAddToCart:(id)sender
 {
     if ([btnColor.titleLabel.text isEqualToString:@"select color"]||[btnSize.titleLabel.text isEqualToString:@"select size"]) {
@@ -731,11 +761,14 @@
     else {
     
     [activityViewCart setHidden:NO];
-     [activityViewCart startAnimating];
+    [activityViewCart startAnimating];
     self.datamyCart=[DataMyCart sharedCart];
-  
+        
+//    NSString *randomproductId=
+//    NSLog(@"");
+//    self.dataproduct.RandomProductId=randomproductId;
     [self.datamyCart addProduct:self.dataproduct];
-   // [self addedToCartAlert];
+        
     NSLog(@"Data my Cart %@",self.datamyCart);
     [activityViewCart startAnimating];
     if (_timer == nil)
@@ -746,7 +779,6 @@
                                                 userInfo:nil
                                                  repeats:YES];
     }
-    
     }
 }
 
@@ -762,8 +794,7 @@
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    
-    // Load the pages which are now on screen
+// Load the pages which are now on screen
     
 //    if(scrollView==self.scrollView)
 //    {

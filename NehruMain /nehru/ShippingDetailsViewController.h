@@ -20,7 +20,7 @@
     
     IBOutlet UIButton *btnsave;
 }
-@property (weak, nonatomic) IBOutlet UIScrollView *backgScroll;
+@property (strong, nonatomic) IBOutlet UIScrollView *backgScroll;
 -(IBAction)ClickedBtnSaveDetails:(id)sender;
 
 @end

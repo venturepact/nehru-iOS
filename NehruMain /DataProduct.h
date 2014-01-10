@@ -12,11 +12,13 @@
 @property(nonatomic,strong)UIImage *imgproduct;
 @property(nonatomic,strong)NSString *isfavorite;
 @property(nonatomic,strong)NSString *ProductId;
+@property(nonatomic,strong)NSString *RandomProductId;
 @property(nonatomic,strong)NSObject *ProductImage;
 @property(nonatomic,strong)NSString *ProductName;
 @property(nonatomic,strong)NSString *CategoryId;
 @property(nonatomic,strong)NSString *ProductModel;
 @property(nonatomic,assign)NSInteger productquantity;
+@property(nonatomic,assign)NSInteger productreqQuantity;
 @property(nonatomic,strong)NSString *productColor;
 @property(nonatomic,strong)NSString *productSize;
 @property(nonatomic,strong)NSMutableArray *productImages;

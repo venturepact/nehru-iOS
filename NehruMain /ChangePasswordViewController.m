@@ -95,9 +95,7 @@
         {
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
-        
     }
-    
     if(alertView.tag==345591)
     {
         if(buttonIndex ==0)

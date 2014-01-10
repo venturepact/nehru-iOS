@@ -9,7 +9,9 @@
 #import "ShippingDetailsViewController.h"
 
 @interface ShippingDetailsViewController ()
-
+{
+  CGPoint svos;
+}
 @end
 
 @implementation ShippingDetailsViewController
@@ -32,7 +34,9 @@
     UIImageView *imageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"nehru-logo.png"]];
     self.navigationItem.titleView=imageView;
     
-       self.backgScroll.contentSize=CGSizeMake(320, 500);
+    self.backgScroll.contentSize=CGSizeMake(320, 800);
+    
+    svos = self.backgScroll.contentOffset;
 }
 
 -(IBAction)ClickedBtnSaveDetails:(id)sender
@@ -95,8 +99,45 @@
     }
 }
 
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+//    self.backgScroll = (UIScrollView*) self.view;
+//    
+//    CGRect rc = [textField bounds];
+//    rc = [textField convertRect:rc toView:self.backgScroll];
+//    rc.origin.x = 0 ;
+//    rc.origin.y -= 60;
+//    rc.size.height = 500;
+//    CGPoint pt;
+//    pt = rc.origin;
+//    pt.x = 0;
+//    pt.y -= 100;
+//    
+//    [self.backgScroll setContentOffset:pt animated:YES];
+    return YES;
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    /* CGPoint svos;
+    if(textField==txtCity)
+    {
+        svos = self.backgScroll.contentOffset;
+        CGPoint pt;
+        CGRect rc = [txtCity bounds];
+        rc = [textField convertRect:rc toView:self.backgScroll];
+        pt = rc.origin;
+        pt.x = 0;
+        pt.y = 400;
+        [self.backgScroll setContentOffset:pt animated:YES];
+        
+//        [self.backgScroll setContentOffset:CGPointMake(0,100) animated:YES];
+    }*/
+}
+
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    
     [textField resignFirstResponder];
     return YES;
 }
@@ -107,7 +148,6 @@
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
     return [emailTest evaluateWithObject:email];
 }
-
 
 - (void)didReceiveMemoryWarning
 {

@@ -16,6 +16,8 @@
 @synthesize ProductModel;
 @synthesize CategoryId;
 @synthesize productquantity;
+@synthesize RandomProductId;
+@synthesize productreqQuantity;
 @synthesize productUnitprice;
 @synthesize productSubTotal;
 @synthesize productImages;

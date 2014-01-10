@@ -31,7 +31,7 @@
     IBOutlet UITextField *txtPassword;
     IBOutlet UITextField *txtConfirmPassword;
     IBOutlet UITextField *txtEmailId;
-     IBOutlet UIButton * choosePhotoBtn;
+    IBOutlet UIButton * choosePhotoBtn;
     
     IBOutlet UIButton *btnMale;
     IBOutlet UIButton *btnFemale;
@@ -47,8 +47,6 @@
     IBOutlet UITextField *signInPassword;
     
     IBOutlet UIImageView *UserImgVIew;
-    
-    
     
 //For profile Details
     IBOutlet UIView *mainViewForProfile;

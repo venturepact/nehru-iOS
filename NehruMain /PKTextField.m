@@ -56,4 +56,9 @@
     }
 }
 
+
+-(void)pkTextFieldDidBackSpaceWhileTextIsEmpty:(id)sender
+{
+    
+}
 @end
