@@ -77,6 +77,14 @@
                                 alert.tag=34559;
                                 [alert show];
                                 
+                                txtemailAddress.text=@"";
+                                txtCity.text=@"";
+                                txtCountry.text=@"";
+                                txtFullName.text=@"";
+                                txtphone.text=@"";
+                                txtShippingaddress.text=@"";
+                                txtState.text=@"";
+                                
                                 NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
                                 [userDefaults setObject:txtemailAddress.text forKey:@"shipEmailAddress"];
                                 [userDefaults setObject:txtFullName.text forKey:@"shipFullName"];
@@ -154,9 +162,10 @@
     return YES;
 }
 
--(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+-(BOOL)textView :(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:( NSString *)text
 {
-//    [textView resignFirstResponder];
+    if([text isEqualToString:@"\n"])
+        [textView resignFirstResponder];
     return YES;
 }
 

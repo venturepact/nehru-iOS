@@ -199,7 +199,7 @@
 
 -(void)ClickedBackBtn:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+        [self.navigationController popViewControllerAnimated:YES];
 }
 
 //Load custom View
@@ -744,7 +744,16 @@
 
 -(void)clickedShowCart:(id)sender
 {
+    if([[[DataMyCart sharedCart]getArray]count]>0)
+    {
+
     [self performSegueWithIdentifier:@"pushToCart" sender:0];
+    }
+    else
+    {
+        UIAlertView *alertview=[[UIAlertView alloc]initWithTitle:@"Empty Cart" message:@"Please add product into cart" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alertview show];
+    }
 }
 
 #pragma mark - UIScrollViewDelegate

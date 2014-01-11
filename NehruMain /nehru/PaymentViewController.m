@@ -182,6 +182,12 @@
 }
 
 
+-(IBAction)ClickedBackBtn:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
 /* The methods below implement the user interface. You don't need to change anything. */
 
 #pragma mark - UITableViewDataSource methods

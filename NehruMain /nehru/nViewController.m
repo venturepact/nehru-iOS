@@ -25,6 +25,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    
     mTagImage.frame = CGRectMake(55, 235, 230, 149);
 
     NSUserDefaults *Defaults=[NSUserDefaults standardUserDefaults];
@@ -139,6 +140,7 @@
     [super viewDidLoad];
     //user interaction for UItabBarController
 
+  
     [self initialView];
     
     UIImageView *imageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"nehru-logo.png"]];
@@ -388,12 +390,8 @@
                     PFFile *userImageFile = AppUser[@"UserPhoto"];
                     [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
                         if (!error) {
-//                            NSLog(@"Image Data %@",imageData);
-                            //NSData *image = [imageData getData];
                             UIImage *image = [UIImage imageWithData:imageData];
-//                            NSLog(@"Image %@",image);
                             UserImgVIew.image = image;
-//                            NSLog(@"Image file %@",UserImgVIew.image);
                         }
                     }];
                     

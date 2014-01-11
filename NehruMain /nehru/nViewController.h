@@ -57,6 +57,8 @@
     
     IBOutlet UIButton *btnSignOut;
     
+    IBOutlet UIActivityIndicatorView *activity1;
+    
 }
 -(IBAction)ClickedExplore:(id)sender;
 -(IBAction)goToBrowse:(id)sender;
