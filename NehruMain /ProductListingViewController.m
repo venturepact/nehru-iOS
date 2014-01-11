@@ -27,34 +27,16 @@
     return self;
 }
 
--(void)setNavigationFrame
-{
-//    if([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0f)
-//    {
-//        CGRect frame = self.navigationController.view.frame;
-//        if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-//        {
-//            frame.origin.y = 20;
-//        }
-//        else
-//        {
-//            frame.origin.x = 20;
-//        }
-//        [self.navigationController.view setFrame:frame];
-//    }
-    
-//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"nav-bg.png"] forBarMetrics:UIBarMetricsDefault];
-    
-    self.navigationController.navigationBar.translucent = NO;
-    self.navigationItem.title=@"Nehru";
-    [self.navigationItem setHidesBackButton:YES];
-
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    NSLog(@"View bounds %f",self.view.frame.origin.x);
+    NSLog(@"View bounds %f",self.view.frame.origin.y);
+
+//    [self.navigationController.navigationBar setHidden:NO];
+    
+//     self.edgesForExtendedLayout = UIRectEdgeNone;
     
     UIImageView *imageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"nehru-logo.png"]];
     self.navigationItem.titleView=imageView;
@@ -265,7 +247,7 @@
                 NSString *strProductPrice=object[@"productPrice"];
                 dataproduct.productImages=object[@"ProductImages"];
                 dataproduct.isfavorite=object[@"isfavorite"];
-                
+                dataproduct.productDescription=object[@"ProductDescription"];
                 NSLog(@"Data product favorite %@",dataproduct.isfavorite);
                 dataproduct.productquantity=[strproductQty integerValue];
                 dataproduct.productUnitprice=[strProductPrice floatValue];
@@ -403,7 +385,7 @@
     [activity2 startAnimating];
     [self initialViews];
     
-    [self setNavigationFrame];
+//    [self setNavigationFrame];
     [UIView beginAnimations:@"bucketsOff" context:nil];
     [UIView setAnimationDuration:0.4];
     [UIView setAnimationDelegate:self];
@@ -634,10 +616,25 @@
     NSInteger productIndexpath=[sender integerValue];
     if ([segue.identifier isEqualToString:@"pushToProductDetail"])
     {
-        ProductDetailViewController *detailController = segue.destinationViewController;
+//        [self.navigationController setNavigationBarHidden:NO];
+       ProductDetailViewController *detailController = segue.destinationViewController;
         if(isCasual)
         {
             detailController.dataproduct = [self.arrayOfAllproducts objectAtIndex:productIndexpath];
+            /*UIView * fromView = self.view;
+            UIView * toView = detailController.view;
+            
+            // Transition using a page curl.
+            [UIView transitionFromView:fromView
+                                toView:toView
+                              duration:10.0
+                               options:UIViewAnimationOptionTransitionCurlUp
+                            completion:^(BOOL finished) {
+                                if (finished) {
+//                                    self.tabBarController.viewControllers = 1;
+                                }
+                            }];
+            NSLog(@"Do Nothing");*/
         }
         else if(isFormal)
         {

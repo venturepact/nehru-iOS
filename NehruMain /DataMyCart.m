@@ -44,7 +44,7 @@
 }
 
 - (BOOL)containsProduct:(DataProduct *)product {
-    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"ProductId=%@", product.ProductId];
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"RandomProductId=%@", product.RandomProductId];
     NSArray* duplicateProducts = [self.myCartArray filteredArrayUsingPredicate:predicate];
     return (duplicateProducts.count > 0) ? YES : NO;
 }

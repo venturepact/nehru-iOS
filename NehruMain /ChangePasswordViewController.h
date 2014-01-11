@@ -22,5 +22,6 @@
 @property (nonatomic,strong)IBOutlet UITextField *mTxtConfrmPassword;
 @property (nonatomic,strong)IBOutlet UITextField *mTxtEmailID;
 -(IBAction)mClickedChangePassword:(id)sender;
+-(IBAction)ClickedBackBtn:(id)sender;
 
 @end

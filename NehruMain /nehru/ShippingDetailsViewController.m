@@ -34,7 +34,7 @@
     UIImageView *imageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"nehru-logo.png"]];
     self.navigationItem.titleView=imageView;
     
-    self.backgScroll.contentSize=CGSizeMake(320, 800);
+    self.backgScroll.contentSize=CGSizeMake(320, 600);
     
     svos = self.backgScroll.contentOffset;
 }
@@ -44,12 +44,19 @@
     if([txtCity.text isEqualToString:@""]||[txtCountry.text isEqualToString:@""]||[txtemailAddress.text isEqualToString:@""]||[txtFullName.text isEqualToString:@""]||[txtphone.text isEqualToString:@""]||[txtShippingaddress.text isEqualToString:@""]||[txtState.text isEqualToString:@""])
     {
         // show alert on empty fields
-        UIAlertView *showEmptyField=[[UIAlertView alloc]initWithTitle:@"nehru" message:@"Fields cannot be left blank" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        UIAlertView *showEmptyField=[[UIAlertView alloc]initWithTitle:@"nehru" message:@"Fields cannot be left blank" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [showEmptyField show];
+    }
+    else if (![self phoneValidate:[txtphone text]]) {
+            [txtphone becomeFirstResponder];
+        UIAlertView *showEmptyField=[[UIAlertView alloc]initWithTitle:@"Invalid Phone Format" message:@"Use Country code with phone number" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [showEmptyField show];
+        NSLog(@"Phone numbr not valid ");
     }
     else if(![self validateEmailWithString:txtemailAddress.text])
     {
-        UIAlertView *showEmptyField=[[UIAlertView alloc]initWithTitle:@"Wrong Information" message:@"Email Id is not in correct format" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [txtemailAddress becomeFirstResponder];
+        UIAlertView *showEmptyField=[[UIAlertView alloc]initWithTitle:@"Wrong Information" message:@"Email Id is not in correct format" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [showEmptyField show];
     }
     else {
@@ -66,13 +73,11 @@
                         if (!error) {
                             // The find succeeded.
                             if(succeeded){
-                                NSLog(@"Successfull additin of shipping address");
                                 UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Successfull" message:@"Successfully saved Data" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                                 alert.tag=34559;
                                 [alert show];
                                 
                                 NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
-                                //                            [userDefaults setObject:txtEmailId.text forKey:@"UserId"];
                                 [userDefaults setObject:txtemailAddress.text forKey:@"shipEmailAddress"];
                                 [userDefaults setObject:txtFullName.text forKey:@"shipFullName"];
                                 [userDefaults setObject:txtShippingaddress.text forKey:@"ShipAddress"];
@@ -81,12 +86,8 @@
                                 [userDefaults setObject:txtphone.text forKey:@"shipPhone"];
                                 [userDefaults setObject:txtCountry.text forKey:@"shipCountry"];
                                 [userDefaults synchronize];
-                                
-                                
-//                               [self ResignKeys];
                             }
                             else{
-                                //NSLog(@"Sorry we were not able to sign up");
                                 UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Not able to Save details" message:@"Not able to save details" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                                 [alert show];
                             }
@@ -99,46 +100,63 @@
     }
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(alertView.tag==34559)
+    {
+  if(buttonIndex==0)
+  {
+
+      [self performSegueWithIdentifier:@"PushTocheckout" sender:self];}
+  }}
+
+
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
-//    self.backgScroll = (UIScrollView*) self.view;
-//    
-//    CGRect rc = [textField bounds];
-//    rc = [textField convertRect:rc toView:self.backgScroll];
-//    rc.origin.x = 0 ;
-//    rc.origin.y -= 60;
-//    rc.size.height = 500;
-//    CGPoint pt;
-//    pt = rc.origin;
-//    pt.x = 0;
-//    pt.y -= 100;
-//    
-//    [self.backgScroll setContentOffset:pt animated:YES];
+    if(textField==txtCity||textField==txtState||textField==txtphone||textField==txtCountry)
+    {
+       CGRect rc = [textField bounds];
+       rc = [textField convertRect:rc toView:self.backgScroll];
+       rc.origin.x = 0 ;
+       rc.origin.y = 100;
+       rc.size.height = 500;
+       CGPoint pt;
+       pt = rc.origin;
+       pt.x = 0;
+       pt.y = 250;
+       [self.backgScroll setContentOffset:pt animated:YES];
+    }
     return YES;
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    /* CGPoint svos;
-    if(textField==txtCity)
-    {
-        svos = self.backgScroll.contentOffset;
-        CGPoint pt;
-        CGRect rc = [txtCity bounds];
-        rc = [textField convertRect:rc toView:self.backgScroll];
-        pt = rc.origin;
-        pt.x = 0;
-        pt.y = 400;
-        [self.backgScroll setContentOffset:pt animated:YES];
-        
-//        [self.backgScroll setContentOffset:CGPointMake(0,100) animated:YES];
-    }*/
+   
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    
+    [self.backgScroll setContentOffset:CGPointMake(0, 0) animated:YES];
     [textField resignFirstResponder];
+    return YES;
+}
+
+-(BOOL)textViewShouldEndEditing:(UITextView *)textView
+{
+    [self.backgScroll setContentOffset:CGPointMake(0, 0) animated:YES];
+
+    
+    [textView resignFirstResponder];
+    return YES;
+}
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+//    [textView resignFirstResponder];
     return YES;
 }
 
@@ -147,6 +165,18 @@
     NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
     return [emailTest evaluateWithObject:email];
+}
+
+-(IBAction)ClickedBackBtn:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(BOOL)phoneValidate:(NSString *)phoneNumber
+{
+    NSString *phoneNo =@"^((\\+)|(00))[0-9]{6,14}$";
+    NSPredicate *phoneTest =[NSPredicate predicateWithFormat:@"SELF MATCHES %@",phoneNo];
+    return [phoneTest evaluateWithObject: phoneNumber];
 }
 
 - (void)didReceiveMemoryWarning

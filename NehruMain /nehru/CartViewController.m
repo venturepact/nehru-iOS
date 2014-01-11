@@ -58,9 +58,9 @@
     
     */
     
-    if(IS_IPHONE_5)
+    if(IS_HEIGHT_GTE_568)
     {
-         viewcheckout.frame=CGRectMake(0,365 , 320, 46);
+         viewcheckout.frame=CGRectMake(0,400 , 320, 46);
     }
     else
     {
@@ -118,6 +118,8 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString *tableIdentifier=@"CartTable";
+    
+    
     UITableViewCell *tblViewCell;
     if(indexPath.section==0)
     {
@@ -136,14 +138,18 @@
             mainTableCell.imgProduct.image=image;
         }];
     mainTableCell.lblproductName.text=Objdataproduct.ProductName;
-    mainTableCell.lblproductquantity.text=[NSString stringWithFormat:@"%d",Objdataproduct.productquantity];
+    mainTableCell.lblproductquantity.text=[NSString stringWithFormat:@"%d",Objdataproduct.productreqQuantity];
     mainTableCell.lblPriceOfProduct.text=[NSString stringWithFormat:@"$%0.2f",Objdataproduct.productUnitprice];
     mainTableCell.lblproductModel.text=[NSString stringWithFormat:@"%@",Objdataproduct.ProductModel];
     mainTableCell.lblTotalprice.text=[NSString stringWithFormat:@"%0.2f",Objdataproduct.productSubTotal];
     mainTableCell.lblproductColor.text=[NSString stringWithFormat:@"%@",Objdataproduct.productColor];
     mainTableCell.lblproductSize.text=[NSString stringWithFormat:@"%@",Objdataproduct.productSize];
+
+    mainTableCell.selectionStyle=UITableViewCellSelectionStyleNone;
     return mainTableCell;
     }
+    
+  tblViewCell.selectionStyle=UITableViewCellSelectionStyleNone;
     return tblViewCell;
 }
 
@@ -236,7 +242,7 @@
     NSString *strfirstName= [userdefaults objectForKey:@"firstName"];
     if([strfirstName isEqualToString:@""]||strfirstName ==nil)
     {
-        UIAlertView *alertview=[[UIAlertView alloc]initWithTitle:@"Login required" message:@"Please login first to Checkout" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        UIAlertView *alertview=[[UIAlertView alloc]initWithTitle:@"Login required" message:@"Please login first to Checkout" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alertview show];
     }
 }

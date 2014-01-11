@@ -20,10 +20,14 @@
 @synthesize productreqQuantity;
 @synthesize productUnitprice;
 @synthesize productSubTotal;
+@synthesize productDescription;
 @synthesize productImages;
 @synthesize ArrProductSizes;
 @synthesize CartTotal;
 @synthesize isfavorite;
 @synthesize productColor;
 @synthesize productSize;
+@synthesize productColorId;
+@synthesize productSizeId;
+
 @end

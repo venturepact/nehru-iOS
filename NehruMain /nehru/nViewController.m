@@ -246,18 +246,18 @@
         // show alert on empty fields
         if(strGender.class==NULL)
         {
-            UIAlertView *showEmptyField=[[UIAlertView alloc]initWithTitle:@"nehru" message:@"Select gender" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            UIAlertView *showEmptyField=[[UIAlertView alloc]initWithTitle:@"nehru" message:@"Select gender" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [showEmptyField show];
         }
         else
         {
-        UIAlertView *showEmptyField=[[UIAlertView alloc]initWithTitle:@"nehru" message:@"Fields cannot be left blank" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        UIAlertView *showEmptyField=[[UIAlertView alloc]initWithTitle:@"nehru" message:@"Fields cannot be left blank" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [showEmptyField show];
         }
     }
     else if(![self validateEmailWithString:txtEmailId.text])
     {
-        UIAlertView *showEmptyField=[[UIAlertView alloc]initWithTitle:@"Wrong Information" message:@"Email Id is not in correct format" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        UIAlertView *showEmptyField=[[UIAlertView alloc]initWithTitle:@"Wrong Information" message:@"Email Id is not in correct format" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [showEmptyField show];
     }
     else {
@@ -267,7 +267,7 @@
         if (!error) {
             // The find succeeded.
             if(objects.count==1){
-                UIAlertView *alertview=[[UIAlertView alloc]initWithTitle:@"" message:@"Email exists in the database" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:Nil, nil];
+                UIAlertView *alertview=[[UIAlertView alloc]initWithTitle:@"" message:@"Email exists in the database" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:Nil, nil];
                 [alertview show];
                 NSLog(@"email exists");
             }
@@ -363,7 +363,7 @@
                 // The find succeeded.
                 if(objects.count==0)
                 {
-                    UIAlertView *alertview=[[UIAlertView alloc]initWithTitle:@"Incorrect Information" message:@"Username or Password incorrect" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:Nil, nil];
+                    UIAlertView *alertview=[[UIAlertView alloc]initWithTitle:@"Incorrect Information" message:@"Username or Password incorrect" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:Nil, nil];
                     [alertview show];
                 }
                 else if(objects.count==1){
@@ -397,14 +397,14 @@
                         }
                     }];
                     
-                    UIAlertView *alertview=[[UIAlertView alloc]initWithTitle:@"Success" message:@"Successfull Login" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:Nil, nil];
+                    UIAlertView *alertview=[[UIAlertView alloc]initWithTitle:@"Success" message:@"Successfull Login" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:Nil, nil];
                     alertview.tag=100867;
                     [alertview show];
                     signInPassword.text=@"";
                     signInEmailId.text=@"";
                 }
                 else{
-                    UIAlertView *alertview=[[UIAlertView alloc]initWithTitle:@"Incorrect Information" message:@"Username or Password incorrect" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:Nil, nil];
+                    UIAlertView *alertview=[[UIAlertView alloc]initWithTitle:@"Incorrect Information" message:@"Username or Password incorrect" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:Nil, nil];
                     [alertview show];
                 }
             }

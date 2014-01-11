@@ -36,10 +36,19 @@
     IBOutlet UIView *mViewMainLoader;
     BOOL isSize;
     BOOL isColour;
+    
+    IBOutlet UILabel *lblqty;
 //    IBOutlet UIView *mLoaderView;
     IBOutlet UIButton *btnSize;
     IBOutlet UIButton *btnColor;
+    
+    
+    IBOutlet UILabel *lblColor;
+    IBOutlet UILabel *lblSize;
+    
     IBOutlet UIBarButtonItem *btnBack;
+    
+    IBOutlet UITextView *txtViewdescription;
     
     NSMutableArray *ArrProductSizes;
     NSMutableArray *ArrProductColors;
@@ -91,4 +100,7 @@
 -(IBAction)closeImageLoaderView:(id)sender;
 -(IBAction)ClickedBackBtn:(id)sender;
 -(IBAction)actionViewLoader:(id)sender;
+-(BOOL)CheckProductQuantity;
+-(IBAction)ClickedIncreaseQty:(id)sender;
+-(IBAction)ClickedDecreaseQty:(id)sender;
 @end

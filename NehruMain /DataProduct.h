@@ -21,6 +21,9 @@
 @property(nonatomic,assign)NSInteger productreqQuantity;
 @property(nonatomic,strong)NSString *productColor;
 @property(nonatomic,strong)NSString *productSize;
+@property(nonatomic,strong)NSString *productColorId;
+@property(nonatomic,strong)NSString *productSizeId;
+@property(nonatomic,strong)NSString *productDescription;
 @property(nonatomic,strong)NSMutableArray *productImages;
 @property(nonatomic,strong)NSMutableArray *ArrProductSizes;
 @property(nonatomic,assign)float productUnitprice;

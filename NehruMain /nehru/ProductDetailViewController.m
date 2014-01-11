@@ -34,44 +34,8 @@
     return self;
 }
 
--(void)setNavigationFrame
-{
-//    if([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0f)
-//    {
-//        CGRect frame = self.navigationController.view.frame;
-//        if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-//        {
-//            frame.origin.y = 20;
-//        }
-//        else
-//        {
-//            frame.origin.x = 20;
-//        }
-//        [self.navigationController.view setFrame:frame];
-//    }
-    
-//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"nav-bg.png"] forBarMetrics:UIBarMetricsDefault];
-    
-    self.navigationController.navigationBar.translucent = NO;
-    self.navigationItem.title=@"Nehru";
-    NSShadow *shadow = [[NSShadow alloc] init];
-    shadow.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
-    shadow.shadowOffset = CGSizeMake(0, 1);
-    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0], NSForegroundColorAttributeName,shadow, NSShadowAttributeName,[UIFont fontWithName:@"Calibri" size:14.0], NSFontAttributeName, nil]];
-    
-    UIButton *button =  [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setImage:[UIImage imageNamed:@"icon-cart.png"] forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(clickedShowCart:) forControlEvents:UIControlEventTouchUpInside];
-    [button setFrame:CGRectMake(280, 25, 30, 30)];
-    self.navigationController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-    
-//    [self.navigationController pushViewController:viewController2 animated:YES];
-    
-}
-
 -(void)viewWillAppear:(BOOL)animated
 {
-//   [self setNavigationFrame];
     UIButton *button =  [UIButton buttonWithType:UIButtonTypeCustom];
     [button setImage:[UIImage imageNamed:@"icon-cart.png"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(clickedShowCart:) forControlEvents:UIControlEventTouchUpInside];
@@ -80,36 +44,8 @@
     NSLog(@"Product %@",self.dataproduct.ProductId);
     // Set up the content size of the scroll view
     self.backgScroll.contentSize=CGSizeMake(320, 500);
-    
-//    UITapGestureRecognizer *singleFingerTap =
-//    [[UITapGestureRecognizer alloc] initWithTarget:self
-//                                            action:@selector(handleSingleTap)];
-//    [self.view addGestureRecognizer:singleFingerTap];
-}
-
--(void)handleSingleTap {
-    
-    [UIView beginAnimations:nil context:NULL];
-    
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    [UIView setAnimationDuration:1.0];
-    [UIView setAnimationDelegate:self];
-    //[UIView setAnimationRepeatCount:1e100f];  //coutless
-    [UIView setAnimationRepeatCount:1];   // 1 time
-    //[UIView setAnimationRepeatAutoreverses:YES];
-    mViewProdctName.frame = CGRectMake(6 , 5, 307, 32);
-    
-    if (_timer==Nil) {
-        _timer = [NSTimer scheduledTimerWithTimeInterval:5.0f target:self selector:@selector(showView) userInfo:Nil repeats:1 ];
     }
-    mViewProdctName.transform = CGAffineTransformMakeRotation(0);
-    
-    [UIView commitAnimations];
-}
 
--(void)showView {
-    mViewProdctName.frame = CGRectMake(6 , -100, 307, 32);
-}
 
 -(void)GetAllProductSizeAvailable
 {
@@ -125,10 +61,14 @@
             // Do something with the found objects.
             for (PFObject *object in objects) {
                 
-//                NSString *productSizeName=object@""
+                NSString *productSizeName=object[@"ProductSize"];
+                NSString *productSizeId=object.objectId;
+                
+                NSLog(@"ProductSize Name %@",productSizeName);
+                NSLog(@"Product Size id %@",productSizeId);
                 //getting the category Name and Object Id's.
-                [mArrSizes addObject:object[@"ProductSize"]];
-                [ArrProductSizeIds addObject:object[@"objectId"]];
+                [mArrSizes addObject:productSizeName];
+                [ArrProductSizeIds addObject:productSizeId];
                 NSLog(@"Arr product Sizes %@",mArrSizes);
                 NSLog(@"Arr Product Size Ids %@",ArrProductSizeIds);
             }
@@ -140,7 +80,6 @@
         }
     }];
 }
-
 
 -(void)GetAllProductColorAvailable
 {
@@ -154,8 +93,13 @@
             // Do something with the found objects
             for (PFObject *object in objects) {
                 //getting the category Name and Object Id's
-                [mArrColors addObject:object[@"ProductColor"]];
-                [ArrProductColorIds addObject:object[@"objectId"]];
+                NSString *productColorName=object[@"ProductColor"];
+                NSString *productColorId=object.objectId;
+//                NSLog(@"Product Color name %@",productColorName);
+//                NSLog(@"Product Color id %@",productColorId);
+              
+                [mArrColors addObject:productColorName];
+                [ArrProductColorIds addObject:productColorId];
                 NSLog(@"Arr product colors %@",mArrColors);
                 NSLog(@"Arr product Color Ids %@",ArrProductColorIds);
             }
@@ -289,11 +233,12 @@
     isColour=NO;
     [mTblColors setHidden:YES];
     [mTblSizes setHidden:YES];
-//  [mTblSizes setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0,121,121)];
     [mViewColor setHidden:YES];
     [mViewSize setHidden:YES];
     [mBtnInCart setHidden:YES];
     [activityViewCart setHidden:YES];
+    
+    self.dataproduct.productreqQuantity=1;
     //Adding the viewed object into the DataHistory singleton class.
     //[mViewMainLoader setHidden:YES];
     // btnImageProduct.imageView.image=[UIImage imageNamed:@"photo1.png"];
@@ -309,9 +254,9 @@
     self.itemSizeView.layer.borderWidth=1.0f;
     [self displayDataOnscreen];
 
-    mArrColors=[[NSMutableArray alloc]initWithObjects:@"White",@"Black",@"Red",@"Green",@"Blue", nil];
-    mArrSizes = [[NSMutableArray alloc]initWithObjects:@"Small",@"Medium",@"Large",@"Extra Large",@"Extra Extra Large", nil];
-//    [self GetAllProductSizeAvailable];
+//    mArrColors=[[NSMutableArray alloc]initWithObjects:@"White",@"Black",@"Red",@"Green",@"Blue", nil];
+//    mArrSizes = [[NSMutableArray alloc]initWithObjects:@"Small",@"Medium",@"Large",@"Extra Large",@"Extra Extra Large", nil];
+    [self GetAllProductSizeAvailable];
 }
 
 -(void)GetProductImagesFromParse
@@ -326,7 +271,7 @@
         self.pageImages=[objProduct objectForKey:@"ProductImages"];
         NSInteger pageCount = self.pageImages.count;
         
-// Set up the page control
+//        Set up the page control
 //        self.pageControl.currentPage = 0;
 //        self.pageControl.numberOfPages = pageCount;
         
@@ -451,13 +396,17 @@
     
     if(isColour)
     {
-    btnColor.titleLabel.text=[mArrColors objectAtIndex:indexPath.row];
-        self.dataproduct.productColor=btnColor.titleLabel.text;
+    lblColor.text=[mArrColors objectAtIndex:indexPath.row];
+        self.dataproduct.productColor=lblColor.text;
+        self.dataproduct.productColorId=[ArrProductColorIds objectAtIndex:indexPath.row];
+        NSLog(@"Data product color id %@",self.dataproduct.productColorId);
     }
     else
     {
-    btnSize.titleLabel.text=[mArrSizes objectAtIndex:indexPath.row];
-        self.dataproduct.productSize=btnSize.titleLabel.text;
+    lblSize.text=[mArrSizes objectAtIndex:indexPath.row];
+        self.dataproduct.productSize= lblSize.text;
+        self.dataproduct.productSizeId=[ArrProductSizeIds objectAtIndex:indexPath.row];
+        NSLog(@"Data product Size Id %@",self.dataproduct.productSizeId);
     }
 }
 
@@ -465,8 +414,6 @@
     UIAlertView *alertview=[[UIAlertView alloc]initWithTitle:@"Got Success" message:@"Product Successfully Added to cart" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alertview show];
 }
-
-
 
 -(void)displayDataOnscreen
 {
@@ -483,7 +430,9 @@
     productName.font=[UIFont fontWithName:@"Calibri" size:18.0f];
     lblPriceProduct.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"pro-price-bg.png"]];
     btnImageProduct.imageView.image = self.dataproduct.imgproduct;
-
+    
+    NSLog(@"Product Description %@",self.dataproduct.productDescription);
+    txtViewdescription.text=self.dataproduct.productDescription;
     NSLog(@"product Images %@",self.dataproduct.productImages);
     NSMutableArray *arrimages=[[NSMutableArray alloc]init];
     arrimages=self.dataproduct.productImages;
@@ -603,31 +552,6 @@
         }
     }
     [mTblSizes reloadData];
-//    isColour=NO;
-//    
-//    isSize=YES;
-//    if (isClicked!=YES) {
-//        
-//        [mTblSizes setHidden:NO];
-//        [mViewSize setHidden:NO];
-//        isClicked=YES;
-//    }
-//    else {
-//        [mTblSizes setHidden:YES];
-//        [mViewSize setHidden:YES];
-//        isClicked =NO;
-//    }
-
-//    isSize=YES;
-//    [tblselectSize reloadData];
-//    isSize=YES;
-//    isColour=NO;
-//    LCTableViewPickerControl *pickerView = [[LCTableViewPickerControl alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, kPickerControlWidth, kPickerControlAgeHeight) title:@"Please select the color" value:_pickValue items:ArrProductSizes];
-//    [pickerView setDelegate:self];
-//    [pickerView setTag:0];
-//    
-//    [self.view addSubview:pickerView];
-//    [pickerView show];
 }
 
 -(IBAction)ClickedSelectColor:(id)sender
@@ -657,38 +581,6 @@
         }
     }
     [mTblColors reloadData];
-    
-//    BOOL isColor=YES;
-//    Bool issize =NO;
-//
-//    isColour=YES;
-//    isSize=NO;
-    
-//    if(mTblColors !=Nil)
-//    {
-//        [mTblColors setHidden:NO];
-//    }
-//    if (isClicked!=YES) {
-//     
-//        [mTblColors setHidden:NO];
-//        [mViewColor setHidden:NO];
-//        isClicked=YES;
-//    }
-//    else {
-//        [mTblColors setHidden:YES];
-//        [mViewColor setHidden:YES];
-//        isClicked =NO;
-//    }
-////    isColour=YES;
-////    [tblSelectColor reloadData];
-//    isSize=NO;
-//    isColour=YES;
-//    LCTableViewPickerControl *pickerView = [[LCTableViewPickerControl alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, kPickerControlWidth, kPickerControlAgeHeight) title:@"Please select the color" value:_pickValue items:ArrProductColors];
-//    [pickerView setDelegate:self];
-//    [pickerView setTag:0];
-//    
-//    [self.view addSubview:pickerView];
-//    [pickerView show];
 }
 
 //- (void)dismissPickerControl:(LCTableViewPickerControl*)view
@@ -743,17 +635,16 @@
 
 -(IBAction)ClickedAddToCart:(id)sender
 {
-    if ([btnColor.titleLabel.text isEqualToString:@"select color"]||[btnSize.titleLabel.text isEqualToString:@"select size"]) {
-        if ([btnColor.titleLabel.text isEqualToString:@"select color"]&&[btnSize.titleLabel.text isEqualToString:@"select size"]) {
+    if ([lblColor.text isEqualToString:@"Select Color"]||[lblSize.text isEqualToString:@"Select Size"]) {
+        if ([lblColor.text isEqualToString:@"Select Color"]&&[lblSize.text isEqualToString:@"Select Size"]) {
             UIAlertView *alertColor = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Please Select Color and Size" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
             [alertColor show];
-
         }
-    else if ([btnColor.titleLabel.text isEqualToString:@"select color"]) {
+    else if ([lblColor.text isEqualToString:@"Select Color"]) {
         UIAlertView *alertColor = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Please Select Color" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alertColor show];
     }
-   else if ([btnSize.titleLabel.text isEqualToString:@"select size"]) {
+   else if ([lblSize.text isEqualToString:@"Select Size"]) {
         UIAlertView *alertColor = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Please Select Size" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alertColor show];
     }
@@ -764,16 +655,25 @@
     [activityViewCart startAnimating];
     self.datamyCart=[DataMyCart sharedCart];
         
-//    NSString *randomproductId=
-//    NSLog(@"");
-//    self.dataproduct.RandomProductId=randomproductId;
-    [self.datamyCart addProduct:self.dataproduct];
+    NSString *randomproductId=[NSString stringWithFormat:@"%@ %@",self.dataproduct.productSizeId,self.dataproduct.productColorId];
+    NSLog(@"RandomProductId %@",randomproductId);
+    self.dataproduct.RandomProductId=randomproductId;
+    
+        if([self CheckProductQuantity])
+        {
+            [self.datamyCart addProduct:self.dataproduct];
+        }
+        else
+        {
+            UIAlertView *alertview=[[UIAlertView alloc]initWithTitle:@"Quantity out of stock" message:@"Product Quantity not available" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alertview show];
+        }
         
     NSLog(@"Data my Cart %@",self.datamyCart);
     [activityViewCart startAnimating];
     if (_timer == nil)
     {
-        _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f
+        _timer = [NSTimer scheduledTimerWithTimeInterval:0.5f
                                                   target:self
                                                 selector:@selector(showInCart)
                                                 userInfo:nil
@@ -781,6 +681,62 @@
     }
     }
 }
+
+-(IBAction)ClickedIncreaseQty:(id)sender
+{
+    NSInteger prodQty=self.dataproduct.productquantity;
+    NSString *availableQty=[NSString stringWithFormat:@"%@",lblqty.text];
+    
+    NSInteger qtyupdated=[availableQty integerValue];
+    qtyupdated= qtyupdated+1;
+    
+    if(qtyupdated>prodQty)
+    {
+        qtyupdated=qtyupdated-1;
+    }
+    lblqty.text=[NSString stringWithFormat:@"%d",qtyupdated];
+    self.dataproduct.productreqQuantity=qtyupdated;
+}
+
+
+-(IBAction)ClickedDecreaseQty:(id)sender
+{
+    NSString *availableQty=[NSString stringWithFormat:@"%@",lblqty.text];
+    
+    NSInteger qtyupdated=[availableQty integerValue];
+    qtyupdated=qtyupdated-1;
+    
+    if(qtyupdated<1)
+    {
+        qtyupdated=qtyupdated+1;
+    }
+    lblqty.text=[NSString stringWithFormat:@"%d",qtyupdated];
+    self.dataproduct.productreqQuantity=qtyupdated;
+}
+
+-(BOOL)CheckProductQuantity
+{
+    NSInteger getTotalQty=0;
+    NSMutableArray *productArrayInCart=[[DataMyCart sharedCart]getArray];
+    
+    for (DataProduct* product in productArrayInCart) {
+        NSLog(@"Data product Id %@",self.dataproduct.ProductId);
+        NSLog(@"Data product Id %@",product.ProductId);
+        if([self.dataproduct.ProductId isEqualToString:product.ProductId])
+        {
+            getTotalQty=getTotalQty+product.productreqQuantity;
+        }
+    }
+    if(getTotalQty >= self.dataproduct.productquantity)
+    {
+        return NO;
+    }
+    else {
+        return YES;
+    }
+}
+
+
 
 -(void)showInCart {
     [mBtnInCart setHidden:NO];

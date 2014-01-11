@@ -118,6 +118,11 @@
     }
 }
 
+-(IBAction)ClickedBackBtn:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;

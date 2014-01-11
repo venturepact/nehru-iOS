@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ShippingDetailsViewController : UIViewController<UIScrollViewDelegate,UITextFieldDelegate>
+@interface ShippingDetailsViewController : UIViewController<UIScrollViewDelegate,UITextFieldDelegate,UITextViewDelegate>
 {
     IBOutlet UITextField *txtemailAddress;
     IBOutlet UITextField *txtFullName;
@@ -22,5 +22,6 @@
 }
 @property (strong, nonatomic) IBOutlet UIScrollView *backgScroll;
 -(IBAction)ClickedBtnSaveDetails:(id)sender;
+-(IBAction)ClickedBackBtn:(id)sender;
 
 @end
