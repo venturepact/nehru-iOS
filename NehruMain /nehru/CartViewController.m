@@ -60,11 +60,11 @@
     
     if(IS_HEIGHT_GTE_568)
     {
-         viewcheckout.frame=CGRectMake(0,400 , 320, 46);
+         viewcheckout.frame=CGRectMake(0,410,320,46);
     }
     else
     {
-        viewcheckout.frame=CGRectMake(0,320,320,46);
+        viewcheckout.frame=CGRectMake(0,380,320,46);
     }
 }
 

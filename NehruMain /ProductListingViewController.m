@@ -41,14 +41,12 @@
     UIImageView *imageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"nehru-logo.png"]];
     self.navigationItem.titleView=imageView;
     
-    [activity1 startAnimating];
     
-    [activity2 startAnimating];
     [self initialViews];
     
         //Refresh view on the second UITableView
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(AddProducttoWishlist:) name:@"AddToWishlist" object:nil];
-//    [self GetProducts];
+
 }
 
 
@@ -110,7 +108,7 @@
     mTableCasual.contentInset = UIEdgeInsetsMake(0.0, 0.0, 100, 0.0);
     mTableFormal.contentInset=UIEdgeInsetsMake(0.0,0.0,70,0.0);
     
-    viewCategory.frame = CGRectMake(-80, 0, 320, 33);
+    viewCategory.frame = CGRectMake(-80, 64, 320, 33);
     
     UISwipeGestureRecognizer *oneFingerSwipeLeft = [[UISwipeGestureRecognizer alloc]
                                                     initWithTarget:self
@@ -137,7 +135,21 @@
         //  update the last update date
         [_refreshHeaderView refreshLastUpdatedDate];
     }
-    [self GetProducts];
+    
+    if([self.arrayOfAllproducts count]>0 && [self.arrformalproducts count]>0)
+    {
+        NSLog(@"Arrays are not empty");
+    }
+    else
+    {
+        [activity1 startAnimating];
+        
+        [activity2 startAnimating];
+        
+        [self GetProducts];
+    }
+    
+//    [self GetProducts];
 }
 
 
@@ -342,10 +354,10 @@
     [UIView setAnimationDelegate:self];
     
     //position off screen
-    ViewCasual.frame=CGRectMake(0 , 40  , 320 , 420);
-    ViewFormal.frame=CGRectMake(-484, 40, 320, 480);
+    ViewCasual.frame=CGRectMake(0 , 96  , 320 , 420);
+    ViewFormal.frame=CGRectMake(-484, 96, 320, 480);
     
-    viewCategory.frame = CGRectMake(80, 0, 320, 33); //animate off screen
+    viewCategory.frame = CGRectMake(80, 64, 320, 33); //animate off screen
     [UIView commitAnimations];
     
     [mTableFormal reloadData];
@@ -358,17 +370,17 @@
     isFormal=NO;
     
 //    btnCasual.titleLabel.font=[UIFont fontWithName:@"Calibri" size:14.0f];
-    mTableCasual.contentInset = UIEdgeInsetsMake(0.0, 0.0, 100, 0.0);
-//    mTableFormal.contentInset=UIEdgeInsetsMake(0.0,0.0,70,0.0);
+    mTableCasual.contentInset = UIEdgeInsetsMake(0.0, 0.0, 150, 0.0);
+//    mTableFormal.contentInset=UIEdgeInsetsMake(0.0,0.0,100,0.0);
 
     [UIView beginAnimations:@"bucketsOff" context:nil];
     [UIView setAnimationDuration:0.4];
     [UIView setAnimationDelegate:self];
     
     //position off screen
-    ViewCasual.frame=CGRectMake(484, 40  , 320 , 420);
-    ViewFormal.frame=CGRectMake(0, 40, 320, 480);
-    viewCategory.frame = CGRectMake(-80, 0, 320, 33);
+    ViewCasual.frame=CGRectMake(484, 96  , 320 , 420);
+    ViewFormal.frame=CGRectMake(0, 96, 320, 480);
+    viewCategory.frame = CGRectMake(-80, 64, 320, 33);
     //animate off screen
     [UIView commitAnimations];
     [mTableCasual reloadData];
@@ -380,9 +392,9 @@
     
     //setting tab bar user interaction enabled.
      [[[[self.tabBarController tabBar]items]objectAtIndex:1]setEnabled:TRUE];
-    [activity1 startAnimating];
-    
-    [activity2 startAnimating];
+//    [activity1 startAnimating];
+//    
+//    [activity2 startAnimating];
     [self initialViews];
     
 //    [self setNavigationFrame];
@@ -391,21 +403,24 @@
     [UIView setAnimationDelegate:self];
     
     //position off screen
-    ViewCasual.frame=CGRectMake(484, 40  , 320 , 420);
-    ViewFormal.frame=CGRectMake(0, 40, 320, 480);
+    ViewCasual.frame=CGRectMake(484, 96  , 320 , 420);
+    ViewFormal.frame=CGRectMake(0, 96, 320, 480);
     //animate off screen
     [UIView commitAnimations];
     [mTableCasual reloadData];
     
-    if([self.arrayOfAllproducts count]>0 && [self.arrformalproducts count]>0)
-    {
-        NSLog(@"Arrays are not empty");
-    }
-    else
-    {
-        
-        [self GetProducts];
-    }
+//    if([self.arrayOfAllproducts count]>0 && [self.arrformalproducts count]>0)
+//    {
+//        NSLog(@"Arrays are not empty");
+//    }
+//    else
+//    {
+//        [activity1 startAnimating];
+//        
+//        [activity2 startAnimating];
+//        
+//        [self GetProducts];
+//    }
 }
 
 
@@ -463,10 +478,10 @@
     [UIView setAnimationDelegate:self];
     
     //position off screen
-    ViewCasual.frame=CGRectMake(0 , 40  , 320 , 420);
-    ViewFormal.frame=CGRectMake(-484, 40, 320, 480);
+    ViewCasual.frame=CGRectMake(0 , 96  , 320 , 420);
+    ViewFormal.frame=CGRectMake(-484, 96, 320, 480);
     
-    viewCategory.frame = CGRectMake(80, 0, 320, 33);
+    viewCategory.frame = CGRectMake(80, 64, 320, 33);
     //animate off screen
     [UIView commitAnimations];
     [mTableFormal reloadData];
@@ -499,9 +514,9 @@
     [UIView setAnimationDelegate:self];
     
     //position off screen
-    ViewCasual.frame=CGRectMake(484, 40  , 320 , 420);
-    ViewFormal.frame=CGRectMake(0, 40, 320, 480);
-    viewCategory.frame = CGRectMake(-80, 0, 320, 33); 
+    ViewCasual.frame=CGRectMake(484, 96  , 320 , 420);
+    ViewFormal.frame=CGRectMake(0, 96, 320, 480);
+    viewCategory.frame = CGRectMake(-80, 64, 320, 33);
     //animate off screen
     [UIView commitAnimations];
     [mTableCasual reloadData];
@@ -586,7 +601,7 @@
         mainTableCell.bgContentView.image=[UIImage imageNamed:@"main-product-bg_shadow s.png"];
         NSLog(@"Data product image %@",dataproduct.imgproduct);
         mainTableCell.imgproduct.image=dataproduct.imgproduct;
-  mainTableCell.lblproductName.font=[UIFont fontWithName:@"Calibri" size:12.0f];
+        mainTableCell.lblproductName.font=[UIFont fontWithName:@"Calibri" size:12.0f];
         mainTableCell.lblproductName.text=dataproduct.ProductName;
         mainTableCell.lblproductModelName.text=dataproduct.ProductModel;
           mainTableCell.lblproductModelName.font=[UIFont fontWithName:@"Calibri" size:12.0f];
