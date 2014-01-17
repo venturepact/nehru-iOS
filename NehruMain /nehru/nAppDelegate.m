@@ -20,13 +20,11 @@
     
     //initializing the class datacart.
     self.datamycart=[DataMyCart sharedCart];
-//    self.datamycart.myCartArray=[[NSMutableArray alloc]init];
+    //self.datamycart.myCartArray=[[NSMutableArray alloc]init];
     
     //initializing the class wishlist.
     self.datawishlist=[DataWishlist sharedWishList];
-//    self.datawishlist.myWishlistArray=[[NSMutableArray alloc]init];
-    
-  
+    //self.datawishlist.myWishlistArray=[[NSMutableArray alloc]init];
     return YES;
 }
 							

@@ -235,8 +235,7 @@
     [mTblSizes setHidden:YES];
     [mViewColor setHidden:YES];
     [mViewSize setHidden:YES];
-//    [DataMyCart sharedCart]containsObject:<#(id)#>
-//    if()
+
     [mBtnInCart setHidden:YES];
     [activityViewCart setHidden:YES];
     
@@ -246,7 +245,7 @@
     // btnImageProduct.imageView.image=[UIImage imageNamed:@"photo1.png"];
     
     mProdctImage.image =self.dataproduct.imgproduct;
-   // btnImageProduct.backgroundColor=[UIColor colorWithPatternImage:self.dataproduct.imgproduct];
+  
     NSLog(@"Dataproduct %@",self.dataproduct);
     self.backgScroll.contentSize=CGSizeMake(320, 500);
     self.itemColorView.layer.borderColor=[UIColor lightGrayColor].CGColor;
@@ -642,45 +641,47 @@
             UIAlertView *alertColor = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Please Select Color and Size" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
             [alertColor show];
         }
-    else if ([lblColor.text isEqualToString:@"Select Color"]) {
-        UIAlertView *alertColor = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Please Select Color" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alertColor show];
-    }
-   else if ([lblSize.text isEqualToString:@"Select Size"]) {
-        UIAlertView *alertColor = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Please Select Size" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alertColor show];
-    }
+        else if ([lblColor.text isEqualToString:@"Select Color"]) {
+            UIAlertView *alertColor = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Please Select Color" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alertColor show];
+        }
+        else if ([lblSize.text isEqualToString:@"Select Size"]) {
+            UIAlertView *alertColor = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Please Select Size" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alertColor show];
+        }
     }
     else {
-    [activityViewCart setHidden:NO];
-    [activityViewCart startAnimating];
-    self.datamyCart=[DataMyCart sharedCart];
         
-    NSString *randomproductId=[NSString stringWithFormat:@"%@ %@",self.dataproduct.productSizeId,self.dataproduct.productColorId];
-    NSLog(@"RandomProductId %@",randomproductId);
-    self.dataproduct.RandomProductId=randomproductId;
-    
+        [activityViewCart setHidden:NO];
+        [activityViewCart startAnimating];
+        self.datamyCart=[DataMyCart sharedCart];
+        
+        NSLog(@"the array shared Cart.%@",[[DataMyCart sharedCart]getArray]);
+        NSString *randomproductId=[NSString stringWithFormat:@"%@%@",self.dataproduct.productSizeId,self.dataproduct.productColorId];
+        NSLog(@"RandomProductId %@",randomproductId);
+        self.dataproduct.RandomProductId=randomproductId;
+        
         if([self CheckProductQuantity])
         {
             [self.datamyCart addProduct:self.dataproduct];
-            
-            NSLog(@"Data my Cart %@",self.datamyCart);
-            [activityViewCart startAnimating];
-            if (_timer == nil)
-            {
-                _timer = [NSTimer scheduledTimerWithTimeInterval:0.5f
-                                                          target:self
-                                                        selector:@selector(showInCart)
-                                                        userInfo:nil
-                                                         repeats:YES];
-            }
         }
         else
         {
             UIAlertView *alertview=[[UIAlertView alloc]initWithTitle:@"Quantity out of stock" message:@"Product Quantity not available" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alertview show];
         }
-}
+        
+        NSLog(@"Data my Cart %@",self.datamyCart);
+        [activityViewCart startAnimating];
+        if (_timer == nil)
+        {
+            _timer = [NSTimer scheduledTimerWithTimeInterval:0.5f
+                                                      target:self
+                                                    selector:@selector(showInCart)
+                                                    userInfo:nil
+                                                     repeats:YES];
+        }
+    }
 }
 
 -(IBAction)ClickedIncreaseQty:(id)sender
@@ -737,6 +738,7 @@
     }
 }
 
+
 -(void)showInCart {
     [mBtnInCart setHidden:NO];
 }
@@ -759,10 +761,10 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
 // Load the pages which are now on screen
     
-//    if(scrollView==self.scrollView)
-//    {
-//  //  [self loadVisiblePages];
-//    }
+    if(scrollView==self.scrollView)
+    {
+       [self loadVisiblePages];
+    }
 //    [self loadVisiblePages];
 }
 

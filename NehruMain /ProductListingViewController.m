@@ -33,18 +33,15 @@
     
     NSLog(@"View bounds %f",self.view.frame.origin.x);
     NSLog(@"View bounds %f",self.view.frame.origin.y);
-
 //    [self.navigationController.navigationBar setHidden:NO];
     
 //     self.edgesForExtendedLayout = UIRectEdgeNone;
     
     UIImageView *imageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"nehru-logo.png"]];
     self.navigationItem.titleView=imageView;
-    
-    
     [self initialViews];
     
-        //Refresh view on the second UITableView
+    //Refresh view on the second UITableView
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(AddProducttoWishlist:) name:@"AddToWishlist" object:nil];
 
 }

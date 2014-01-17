@@ -47,6 +47,7 @@
     self.navigationItem.titleView=imageView;
     // Do any additional setup after loading the view from its nib.
     
+    NSLog(@"No. of products in the array shared Cart.%@",[[DataMyCart sharedCart]getArray]);
     // Get the size of the main screen
    /* CGRect fullScreenRect = [[UIScreen mainScreen]bounds];
     
@@ -55,7 +56,6 @@
     
     // Resize and fill the screen
     [[((UITabBarController *)self.parentViewController).view.subviews objectAtIndex:0] setFrame:fullScreenRect];
-    
     */
     
     if(IS_HEIGHT_GTE_568)
