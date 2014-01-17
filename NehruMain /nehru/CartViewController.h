@@ -18,7 +18,6 @@
     BOOL IsAdd;
     
     IBOutlet UIButton *btnBack;
-    
     IBOutlet UIView *viewcheckout;
 }
 @property(nonatomic,strong)IBOutlet UIScrollView *mainScrollView;

@@ -16,6 +16,7 @@
     IBOutlet UITextField *mTxtNewPassword;
     IBOutlet UITextField *mTxtConfrmPassword;
     
+    IBOutlet UIButton *btnChangePassword;
 }
 
 @property (nonatomic,strong)IBOutlet UITextField *mTxtNewPassword;

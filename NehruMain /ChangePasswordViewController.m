@@ -29,7 +29,13 @@
 }
 
 -(IBAction)mClickedChangePassword:(id)sender {
-    
+    if([mTxtConfrmPassword.text isEqualToString:@""]||[mTxtEmailID.text isEqualToString:@""]||[mTxtNewPassword.text isEqualToString:@""])
+    {
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Please enter the required fields" message:@"Enter required Data" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else {
+        btnChangePassword.userInteractionEnabled=NO;
     PFQuery *validLoginQuery=[PFQuery queryWithClassName:@"NehruUser"];
     [validLoginQuery whereKey:@"emailId" equalTo:mTxtEmailID.text];
     [validLoginQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -48,6 +54,7 @@
                     if (!error) {
                         // The find succeeded.
                         if(succeeded){
+                            self.view.userInteractionEnabled=NO;
                             NSLog(@"Password successfully changed");
                             UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Password successfully changed" message:@"Password successfully changed" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                             alert.tag=345591;
@@ -77,6 +84,7 @@
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
+    }
 }
 
 -(void)ResignKeys
@@ -93,6 +101,7 @@
         
         if(buttonIndex ==0)
         {
+            [alertView dismissWithClickedButtonIndex:0 animated:YES];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
     }
@@ -100,6 +109,8 @@
     {
         if(buttonIndex ==0)
         {
+            [alertView dismissWithClickedButtonIndex:0 animated:YES];
+            btnChangePassword.userInteractionEnabled=YES;
             // Get views. controllerIndex is passed in as the controller we want to go to.
             UIView * fromView = self.tabBarController.selectedViewController.view;
             UIView * toView = [[self.tabBarController.viewControllers objectAtIndex:1] view];
@@ -116,6 +127,7 @@
                             }];
         }
     }
+     [alertView dismissWithClickedButtonIndex:0 animated:YES];
 }
 
 -(IBAction)ClickedBackBtn:(id)sender

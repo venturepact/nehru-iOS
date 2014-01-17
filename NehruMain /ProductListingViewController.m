@@ -54,7 +54,8 @@
 {
     if(buttonIndex ==0)
     {
-        
+        [alertView dismissWithClickedButtonIndex:0 animated:YES];
+
         // Get views. controllerIndex is passed in as the controller we want to go to.
         UIView * fromView = self.tabBarController.selectedViewController.view;
         UIView * toView = [[self.tabBarController.viewControllers objectAtIndex:1] view];
@@ -74,7 +75,6 @@
     {
         NSLog(@"Do Nothing");
     }
-    [alertView dismissWithClickedButtonIndex:0 animated:YES];
 }
 
 -(void)LoadIndicatorView
@@ -354,8 +354,8 @@
     [UIView setAnimationDelegate:self];
     
     //position off screen
-    ViewCasual.frame=CGRectMake(0 , 96  , 320 , 420);
-    ViewFormal.frame=CGRectMake(-484, 96, 320, 480);
+    ViewCasual.frame=CGRectMake(0 , 120  , 320 , 420);
+    ViewFormal.frame=CGRectMake(-484, 120, 320, 480);
     
     viewCategory.frame = CGRectMake(80, 64, 320, 33); //animate off screen
     [UIView commitAnimations];
@@ -378,8 +378,8 @@
     [UIView setAnimationDelegate:self];
     
     //position off screen
-    ViewCasual.frame=CGRectMake(484, 96  , 320 , 420);
-    ViewFormal.frame=CGRectMake(0, 96, 320, 480);
+    ViewCasual.frame=CGRectMake(484, 120  , 320 , 420);
+    ViewFormal.frame=CGRectMake(0, 120, 320, 480);
     viewCategory.frame = CGRectMake(-80, 64, 320, 33);
     //animate off screen
     [UIView commitAnimations];
@@ -403,8 +403,8 @@
     [UIView setAnimationDelegate:self];
     
     //position off screen
-    ViewCasual.frame=CGRectMake(484, 96  , 320 , 420);
-    ViewFormal.frame=CGRectMake(0, 96, 320, 480);
+    ViewCasual.frame=CGRectMake(484, 120  , 320 , 420);
+    ViewFormal.frame=CGRectMake(0, 120, 320, 480);
     //animate off screen
     [UIView commitAnimations];
     [mTableCasual reloadData];
@@ -478,8 +478,8 @@
     [UIView setAnimationDelegate:self];
     
     //position off screen
-    ViewCasual.frame=CGRectMake(0 , 96  , 320 , 420);
-    ViewFormal.frame=CGRectMake(-484, 96, 320, 480);
+    ViewCasual.frame=CGRectMake(0 , 120  , 320 , 420);
+    ViewFormal.frame=CGRectMake(-484, 120, 320, 480);
     
     viewCategory.frame = CGRectMake(80, 64, 320, 33);
     //animate off screen
@@ -514,8 +514,8 @@
     [UIView setAnimationDelegate:self];
     
     //position off screen
-    ViewCasual.frame=CGRectMake(484, 96  , 320 , 420);
-    ViewFormal.frame=CGRectMake(0, 96, 320, 480);
+    ViewCasual.frame=CGRectMake(484, 120  , 320 , 420);
+    ViewFormal.frame=CGRectMake(0, 120, 320, 480);
     viewCategory.frame = CGRectMake(-80, 64, 320, 33);
     //animate off screen
     [UIView commitAnimations];
@@ -541,7 +541,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 250;
+    return 300;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -569,12 +569,20 @@
     dataproduct=[self.arrayOfAllproducts objectAtIndex:indexPath.row];
     
     NSLog(@"Data product image %@",dataproduct.imgproduct);
-    mainTableCell.imgproduct.image=dataproduct.imgproduct;
+        if(!dataproduct.imgproduct)
+        {
+            mainTableCell.imgproduct.image=[UIImage imageNamed:@"imgnotavailable.jpg"];
+        }
+        else
+        {
+            mainTableCell.imgproduct.image=dataproduct.imgproduct;
+//            mainTableCell.imgproduct.image=[UIImage imageNamed:@"imgnotavailable.jpg"];
+        }
     mainTableCell.bgContentView.image=[UIImage imageNamed:@"main-product-bg_shadow s.png"];
     mainTableCell.lblproductName.text=dataproduct.ProductName;
-    mainTableCell.lblproductName.font=[UIFont fontWithName:@"Calibri" size:12.0f];
-    mainTableCell.lblproductModelName.text=dataproduct.ProductModel;
-        mainTableCell.lblproductModelName.font=[UIFont fontWithName:@"Calibri" size:12.0f];
+//    mainTableCell.lblproductName.font=[UIFont fontWithName:@"Calibri" size:12.0f];
+    mainTableCell.lblproductModelName.text=[NSString stringWithFormat:@"$%0.2f",dataproduct.productUnitprice];
+//        mainTableCell.lblproductModelName.font=[UIFont fontWithName:@"Calibri" size:12.0f];
     NSString *strisfavorite= dataproduct.isfavorite;
     mainTableCell.btnfavorites.tag=indexPath.row;
      if([strisfavorite isEqualToString:@"True"])
@@ -600,11 +608,18 @@
         
         mainTableCell.bgContentView.image=[UIImage imageNamed:@"main-product-bg_shadow s.png"];
         NSLog(@"Data product image %@",dataproduct.imgproduct);
-        mainTableCell.imgproduct.image=dataproduct.imgproduct;
-        mainTableCell.lblproductName.font=[UIFont fontWithName:@"Calibri" size:12.0f];
+        if(!dataproduct.imgproduct)
+        {
+            mainTableCell.imgproduct.image=[UIImage imageNamed:@"imgnotavailable.jpg"];
+        }
+        else
+        {
+            mainTableCell.imgproduct.image=dataproduct.imgproduct;
+            //            mainTableCell.imgproduct.image=[UIImage imageNamed:@"imgnotavailable.jpg"];
+        }//        mainTableCell.lblproductName.font=[UIFont fontWithName:@"Calibri" size:12.0f];
         mainTableCell.lblproductName.text=dataproduct.ProductName;
-        mainTableCell.lblproductModelName.text=dataproduct.ProductModel;
-          mainTableCell.lblproductModelName.font=[UIFont fontWithName:@"Calibri" size:12.0f];
+        mainTableCell.lblproductModelName.text=[NSString stringWithFormat:@"$%0.2f",dataproduct.productUnitprice];
+//          mainTableCell.lblproductModelName.font=[UIFont fontWithName:@"Calibri" size:12.0f];
         NSString *strisfavorite= dataproduct.isfavorite;
          mainTableCell.btnfavorites.tag=indexPath.row;
         if([strisfavorite isEqualToString:@"True"])

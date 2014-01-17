@@ -49,6 +49,8 @@
     return (duplicateProducts.count > 0) ? YES : NO;
 }
 
+
+
 - (void)addProduct:(DataProduct*)product {
     if (![self containsProduct:product]) {
         [self.myCartArray addObject:product];

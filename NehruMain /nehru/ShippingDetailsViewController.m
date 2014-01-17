@@ -60,6 +60,7 @@
         [showEmptyField show];
     }
     else {
+        btnsave.userInteractionEnabled=NO;
                     PFObject *usrSignUp=[PFObject objectWithClassName:@"NehruShippingAddress"];
                     [usrSignUp setObject:txtemailAddress.text forKey:@"EmailAddress"];
                     [usrSignUp setObject:txtFullName.text forKey:@"FullName"];
@@ -73,6 +74,8 @@
                         if (!error) {
                             // The find succeeded.
                             if(succeeded){
+                                
+                                self.view.userInteractionEnabled=NO;
                                 UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Successfull" message:@"Successfully saved Data" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                                 alert.tag=34559;
                                 [alert show];
@@ -114,9 +117,11 @@
     {
   if(buttonIndex==0)
   {
-
+       btnsave.userInteractionEnabled=YES;
+       [alertView dismissWithClickedButtonIndex:0 animated:YES];
       [self performSegueWithIdentifier:@"PushTocheckout" sender:self];}
-  }}
+  }
+ [alertView dismissWithClickedButtonIndex:0 animated:YES];}
 
 
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField

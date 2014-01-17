@@ -168,6 +168,7 @@
 		84B4EE22187AB1450061F75A /* btn-checkout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B4EE20187AB1450061F75A /* btn-checkout@2x.png */; };
 		84B4EE23187AB1450061F75A /* checkout-img-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B4EE21187AB1450061F75A /* checkout-img-bg@2x.png */; };
 		84B4EE27187ACC380061F75A /* pro-color-hover-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B4EE26187ACC380061F75A /* pro-color-hover-bg.png */; };
+		84DC7FF01887C3560033F8F9 /* imgnotavailable.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84DC7FEF1887C3560033F8F9 /* imgnotavailable.jpg */; };
 		84E277A3187D40A600EEFEC1 /* push-pin-vector.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E277A2187D40A600EEFEC1 /* push-pin-vector.png */; };
 		84E277A5187D5AC900EEFEC1 /* btn-change_password.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E277A4187D5AC900EEFEC1 /* btn-change_password.png */; };
 		84E277AB187D5D2800EEFEC1 /* btn-change_password-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E277AA187D5D2800EEFEC1 /* btn-change_password-bg@2x.png */; };
@@ -424,6 +425,7 @@
 		84B4EE20187AB1450061F75A /* btn-checkout@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-checkout@2x.png"; sourceTree = "<group>"; };
 		84B4EE21187AB1450061F75A /* checkout-img-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkout-img-bg@2x.png"; sourceTree = "<group>"; };
 		84B4EE26187ACC380061F75A /* pro-color-hover-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pro-color-hover-bg.png"; sourceTree = "<group>"; };
+		84DC7FEF1887C3560033F8F9 /* imgnotavailable.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = imgnotavailable.jpg; sourceTree = "<group>"; };
 		84E277A2187D40A600EEFEC1 /* push-pin-vector.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "push-pin-vector.png"; sourceTree = "<group>"; };
 		84E277A4187D5AC900EEFEC1 /* btn-change_password.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-change_password.png"; sourceTree = "<group>"; };
 		84E277AA187D5D2800EEFEC1 /* btn-change_password-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn-change_password-bg@2x.png"; path = "sign in (320-568)/btn-change_password-bg@2x.png"; sourceTree = SOURCE_ROOT; };
@@ -619,6 +621,7 @@
 				84627C41187FD6B30041DBF4 /* female@2x.png */,
 				84627C44187FD6B90041DBF4 /* male.png */,
 				84627C45187FD6B90041DBF4 /* male@2x.png */,
+				84DC7FEF1887C3560033F8F9 /* imgnotavailable.jpg */,
 				8444C0A218780F2A0044E9F1 /* sign in (320-568) */,
 				8444C07F1877D6070044E9F1 /* product page (640-1136) */,
 				8444C0621877D5EE0044E9F1 /* product page (320-568) */,
@@ -1326,6 +1329,7 @@
 				8444C0721877D5EE0044E9F1 /* add-to-cart.png in Resources */,
 				841DDE6B1845D643007D1F5B /* Images.xcassets in Resources */,
 				842BA4A7187E660400EB391D /* credit-card-bgnew@2x.png in Resources */,
+				84DC7FF01887C3560033F8F9 /* imgnotavailable.jpg in Resources */,
 				8444C0791877D5EE0044E9F1 /* pro-size-bg.png in Resources */,
 				842BA48E187E65FB00EB391D /* credit-card-bgnew.png in Resources */,
 				842BA48A187E65FB00EB391D /* cart-bg1.png in Resources */,

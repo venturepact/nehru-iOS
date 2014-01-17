@@ -311,7 +311,7 @@
         }];
         mainTableCell.bgContentView.image=[UIImage imageNamed:@"main-product-bg_shadow s.png"];
         mainTableCell.lblproductName.text=dataproduct.ProductName;
-        mainTableCell.lblproductName.font=[UIFont fontWithName:@"Calibri" size:12.0f];
+//        mainTableCell.lblproductName.font=[UIFont fontWithName:@"Calibri" size:12.0f];
         mainTableCell.lblproductModelName.text=dataproduct.ProductModel;
         NSString *strisfavorite= dataproduct.isfavorite;
         mainTableCell.btnfavorites.tag=indexPath.row;

@@ -430,6 +430,7 @@
     {
     if(buttonIndex ==0)
     {
+        [alertView dismissWithClickedButtonIndex:0 animated:YES];
         UIView * fromView = self.tabBarController.selectedViewController.view;
         UIView * toView = [[self.tabBarController.viewControllers objectAtIndex:1] view];
         
@@ -444,6 +445,8 @@
                             }
                         }];
         NSLog(@"Do Nothing");
+        
+//        [alertView dismissWithClickedButtonIndex:0 animated:YES];
 //        [self performSegueWithIdentifier:@"productListing" sender:self];
     }
     }
@@ -451,6 +454,8 @@
     {
      if(buttonIndex ==0)
       {
+          [alertView dismissWithClickedButtonIndex:0 animated:YES];
+
           // Get views. controllerIndex is passed in as the controller we want to go to.
           UIView * fromView = self.tabBarController.selectedViewController.view;
           UIView * toView = [[self.tabBarController.viewControllers objectAtIndex:1] view];
@@ -468,7 +473,6 @@
          NSLog(@"Do Nothing");
       }
     }
-    [alertView dismissWithClickedButtonIndex:0 animated:YES];
 }
 
 -(IBAction)ClickedExplore:(id)sender

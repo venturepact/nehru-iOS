@@ -235,6 +235,8 @@
     [mTblSizes setHidden:YES];
     [mViewColor setHidden:YES];
     [mViewSize setHidden:YES];
+//    [DataMyCart sharedCart]containsObject:<#(id)#>
+//    if()
     [mBtnInCart setHidden:YES];
     [activityViewCart setHidden:YES];
     
@@ -420,14 +422,14 @@
     NSLog(@"Dataproduct %@",self.dataproduct);
     self.pageImages=[[NSMutableArray alloc]init];
     lblproductModelName.text=self.dataproduct.ProductModel;
-    lblproductModelName.font=[UIFont fontWithName:@"Calibri" size:12.0f];
+//    lblproductModelName.font=[UIFont fontWithName:@"Calibri" size:12.0f];
     lblproductQuantity.text=[NSString stringWithFormat:@"%d",dataproduct.productquantity];
-    lblproductQuantity.font=[UIFont fontWithName:@"Calibri" size:12.0f];
-    lblPriceProduct.font=[UIFont fontWithName:@"Calibri" size:12.0f];
+//    lblproductQuantity.font=[UIFont fontWithName:@"Calibri" size:12.0f];
+//    lblPriceProduct.font=[UIFont fontWithName:@"Calibri" size:12.0f];
     lblPriceProduct.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"pro-price-bg.png"]];
     lblPriceProduct.text=[NSString stringWithFormat:@"$% 0.2f",self.dataproduct.productUnitprice];
     productName.text=self.dataproduct.ProductName;
-    productName.font=[UIFont fontWithName:@"Calibri" size:18.0f];
+//    productName.font=[UIFont fontWithName:@"Calibri" size:18.0f];
     lblPriceProduct.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"pro-price-bg.png"]];
     btnImageProduct.imageView.image = self.dataproduct.imgproduct;
     
@@ -650,7 +652,6 @@
     }
     }
     else {
-    
     [activityViewCart setHidden:NO];
     [activityViewCart startAnimating];
     self.datamyCart=[DataMyCart sharedCart];
@@ -662,24 +663,24 @@
         if([self CheckProductQuantity])
         {
             [self.datamyCart addProduct:self.dataproduct];
+            
+            NSLog(@"Data my Cart %@",self.datamyCart);
+            [activityViewCart startAnimating];
+            if (_timer == nil)
+            {
+                _timer = [NSTimer scheduledTimerWithTimeInterval:0.5f
+                                                          target:self
+                                                        selector:@selector(showInCart)
+                                                        userInfo:nil
+                                                         repeats:YES];
+            }
         }
         else
         {
             UIAlertView *alertview=[[UIAlertView alloc]initWithTitle:@"Quantity out of stock" message:@"Product Quantity not available" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alertview show];
         }
-        
-    NSLog(@"Data my Cart %@",self.datamyCart);
-    [activityViewCart startAnimating];
-    if (_timer == nil)
-    {
-        _timer = [NSTimer scheduledTimerWithTimeInterval:0.5f
-                                                  target:self
-                                                selector:@selector(showInCart)
-                                                userInfo:nil
-                                                 repeats:YES];
-    }
-    }
+}
 }
 
 -(IBAction)ClickedIncreaseQty:(id)sender
@@ -736,8 +737,6 @@
     }
 }
 
-
-
 -(void)showInCart {
     [mBtnInCart setHidden:NO];
 }
@@ -746,8 +745,7 @@
 {
     if([[[DataMyCart sharedCart]getArray]count]>0)
     {
-
-    [self performSegueWithIdentifier:@"pushToCart" sender:0];
+        [self performSegueWithIdentifier:@"pushToCart" sender:0];
     }
     else
     {

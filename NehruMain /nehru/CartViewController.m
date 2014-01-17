@@ -118,8 +118,6 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString *tableIdentifier=@"CartTable";
-    
-    
     UITableViewCell *tblViewCell;
     if(indexPath.section==0)
     {
