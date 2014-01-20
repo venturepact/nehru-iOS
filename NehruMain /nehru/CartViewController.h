@@ -11,6 +11,7 @@
 #import "DataMyCart.h"
 #import "DataProduct.h"
 #import "nViewController.h"
+#import "ShippingDetailsViewController.h"
 
 @interface CartViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>
 {
@@ -18,6 +19,7 @@
     BOOL IsAdd;
     
     IBOutlet UIButton *btnBack;
+    
     IBOutlet UIView *viewcheckout;
 }
 @property(nonatomic,strong)IBOutlet UIScrollView *mainScrollView;

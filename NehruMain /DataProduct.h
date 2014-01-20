@@ -25,6 +25,7 @@
 @property(nonatomic,strong)NSString *productSizeId;
 @property(nonatomic,strong)NSString *productDescription;
 @property(nonatomic,strong)NSMutableArray *productImages;
+@property(nonatomic,strong)NSMutableArray *ArrOfImages;
 @property(nonatomic,strong)NSMutableArray *ArrProductSizes;
 @property(nonatomic,assign)float productUnitprice;
 @property(nonatomic,assign)float productSubTotal;

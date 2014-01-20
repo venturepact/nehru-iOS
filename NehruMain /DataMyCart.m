@@ -45,8 +45,6 @@
 
 - (BOOL)containsProduct:(DataProduct *)product {
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"RandomProductId=%@", product.RandomProductId];
-    
-    NSLog(@"Random Product id %@",product.RandomProductId);
     NSArray* duplicateProducts = [self.myCartArray filteredArrayUsingPredicate:predicate];
     return (duplicateProducts.count > 0) ? YES : NO;
 }
@@ -62,12 +60,12 @@
 }
 
 - (void)clearCart {
-    myCartArray = [[NSMutableArray alloc] init];
+    self.myCartArray = [[NSMutableArray alloc] init];
 }
 
 - (NSNumber*)total {
     double total = 0.0;
-    for (DataProduct* product in myCartArray) {
+    for (DataProduct* product in self.myCartArray) {
         total += product.productUnitprice ;
     }
     return @(total);

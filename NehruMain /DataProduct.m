@@ -22,6 +22,7 @@
 @synthesize productSubTotal;
 @synthesize productDescription;
 @synthesize productImages;
+@synthesize ArrOfImages;
 @synthesize ArrProductSizes;
 @synthesize CartTotal;
 @synthesize isfavorite;

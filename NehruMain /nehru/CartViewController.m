@@ -47,24 +47,24 @@
     self.navigationItem.titleView=imageView;
     // Do any additional setup after loading the view from its nib.
     
-    NSLog(@"No. of products in the array shared Cart.%@",[[DataMyCart sharedCart]getArray]);
-    // Get the size of the main screen
-   /* CGRect fullScreenRect = [[UIScreen mainScreen]bounds];
+    self.navigationItem.title=@"Cart";
+    self.dataProduct=[[DataProduct alloc]init];
+    self.datacart=[DataMyCart sharedCart];
+    self.cartArray=[[NSMutableArray alloc]init];
+    self.cartArray=[self.datacart getArray];
     
-    // Hide the tab bar
-    ((UITabBarController *)self.parentViewController).tabBar.hidden = YES;
+    NSLog(@"cart Array %@",self.cartArray);
+    [self.datacart mutableCopyArrayCart:self.cartArray];
+    [self calculatetheTotal];
     
-    // Resize and fill the screen
-    [[((UITabBarController *)self.parentViewController).view.subviews objectAtIndex:0] setFrame:fullScreenRect];
-    */
-    
+    [tblView1 reloadData];
     if(IS_HEIGHT_GTE_568)
     {
-         viewcheckout.frame=CGRectMake(0,410,320,46);
+        viewcheckout.frame=CGRectMake(0,400 , 320, 46);
     }
     else
     {
-        viewcheckout.frame=CGRectMake(0,380,320,46);
+        viewcheckout.frame=CGRectMake(0,320,320,46);
     }
 }
 
@@ -81,26 +81,13 @@
     self.dataProduct=[[DataProduct alloc]init];
     self.datacart=[DataMyCart sharedCart];
     self.cartArray=[[NSMutableArray alloc]init];
-    self.cartArray=[[DataMyCart sharedCart]getArray];
+    self.cartArray=[self.datacart getArray];
     
     NSLog(@"cart Array %@",self.cartArray);
     [self.datacart mutableCopyArrayCart:self.cartArray];
     [self calculatetheTotal];
     
     [tblView1 reloadData];
-//    self.cartArray=[[DataMyCart sharedCart]getArray];
-//    
-//    NSLog(@"Cart Array %@",self.cartArray);
-//   [self.datacart mutableCopyArrayCart:self.cartArray];
-//    
-//    // Get the size of the main screen
-//    CGRect fullScreenRect = [[UIScreen mainScreen]bounds];
-//    
-//    // Hide the tab bar
-//    ((UITabBarController *)self.parentViewController).tabBar.hidden = YES;
-//    
-//    // Resize and fill the screen
-//    [[((UITabBarController *)self.parentViewController).view.subviews objectAtIndex:0] setFrame:fullScreenRect];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -118,6 +105,8 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString *tableIdentifier=@"CartTable";
+    
+    
     UITableViewCell *tblViewCell;
     if(indexPath.section==0)
     {
@@ -148,7 +137,7 @@
     }
     
   tblViewCell.selectionStyle=UITableViewCellSelectionStyleNone;
-    return tblViewCell;
+  return tblViewCell;
 }
 
 -(void)checkProductAvailability
@@ -236,13 +225,19 @@
 
 -(IBAction)ClickedCheckout:(id)sender
 {
-    NSUserDefaults *userdefaults=[NSUserDefaults standardUserDefaults];
-    NSString *strfirstName= [userdefaults objectForKey:@"firstName"];
-    if([strfirstName isEqualToString:@""]||strfirstName ==nil)
-    {
-        UIAlertView *alertview=[[UIAlertView alloc]initWithTitle:@"Login required" message:@"Please login first to Checkout" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alertview show];
-    }
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    ShippingDetailsViewController*lvc = [storyboard instantiateViewControllerWithIdentifier:@"ShippingDetails"];
+//    lvc.dataproduct= [self.arrayOfAllproducts objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:lvc animated:YES];
+    
+//    NSUserDefaults *userdefaults=[NSUserDefaults standardUserDefaults];
+//    NSString *strfirstName= [userdefaults objectForKey:@"firstName"];
+//    if([strfirstName isEqualToString:@""]||strfirstName ==nil)
+//    {
+//        UIAlertView *alertview=[[UIAlertView alloc]initWithTitle:@"Login required" message:@"Please login first to Checkout" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        [alertview show];
+//    }
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

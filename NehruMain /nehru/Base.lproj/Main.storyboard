@@ -790,7 +790,6 @@
                         <outlet property="mTableCasual" destination="eXF-am-pgr" id="g2s-3r-xVX"/>
                         <outlet property="mTableFormal" destination="mBh-QK-tOd" id="eYM-Tx-TRs"/>
                         <outlet property="viewCategory" destination="eom-39-rBE" id="p6g-1r-gOy"/>
-                        <segue destination="lDJ-sf-aUw" kind="push" identifier="pushToProductDetail" id="DxB-Bz-jAd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cfz-Fp-pFs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -819,7 +818,7 @@
         <!--Cart View Controller - Cart-->
         <scene sceneID="HGF-wP-vZc">
             <objects>
-                <viewController extendedLayoutIncludesOpaqueBars="YES" id="TTb-YX-9gV" customClass="CartViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CartView" extendedLayoutIncludesOpaqueBars="YES" id="TTb-YX-9gV" customClass="CartViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cxV-I6-PhS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1254,79 +1253,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GFX-4g-bWo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1232" y="-369"/>
+            <point key="canvasLocation" x="1253" y="-336"/>
         </scene>
         <!--Product Detail View Controller - Nehru-->
         <scene sceneID="81Y-Xv-nVl">
             <objects>
-                <viewController storyboardIdentifier="PageContentController" extendedLayoutIncludesOpaqueBars="YES" id="lDJ-sf-aUw" customClass="ProductDetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProductDetail" extendedLayoutIncludesOpaqueBars="YES" id="lDJ-sf-aUw" customClass="ProductDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="95C-KS-sWP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="t31-kn-7zM">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="511"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="517"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" id="5DH-wN-11V">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="229"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="23t-U8-Hs7">
-                                                <rect key="frame" x="6" y="5" width="307" height="218"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            </imageView>
-                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hKV-Lx-bPf">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="223"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <state key="normal">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="actionViewLoader:" destination="lDJ-sf-aUw" eventType="touchUpInside" id="i2Q-Dh-Hpb"/>
-                                                </connections>
-                                            </button>
-                                            <view contentMode="scaleToFill" id="f80-OG-TCu">
-                                                <rect key="frame" x="7" y="5" width="307" height="32"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cart-transparent-bg.png" id="fe0-ov-PDf">
-                                                        <rect key="frame" x="0.0" y="0.0" width="307" height="32"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
-                                                    </imageView>
-                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ery-vz-mi2">
-                                                        <rect key="frame" x="5" y="0.0" width="307" height="32"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="22"/>
-                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            </view>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tYt-kY-l3u">
-                                                <rect key="frame" x="243" y="192" width="62" height="25"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" id="9nA-On-Avd">
-                                                <rect key="frame" x="140" y="186" width="39" height="37"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                            </pageControl>
-                                        </subviews>
-                                        <connections>
-                                            <outlet property="delegate" destination="lDJ-sf-aUw" id="Wna-p3-oO9"/>
-                                        </connections>
-                                    </scrollView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="GSa-wi-DSc">
-                                        <rect key="frame" x="135" y="184" width="50" height="30"/>
+                                        <rect key="frame" x="135" y="190" width="50" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal">
@@ -1334,7 +1276,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="CK3-fg-kwA">
-                                        <rect key="frame" x="7" y="410" width="306" height="41"/>
+                                        <rect key="frame" x="7" y="416" width="306" height="41"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" image="add-to-cart.png">
@@ -1345,21 +1287,18 @@
                                         </connections>
                                     </button>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" id="mTv-N2-Eln">
-                                        <rect key="frame" x="227" y="420" width="20" height="20"/>
+                                        <rect key="frame" x="227" y="426" width="20" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </activityIndicatorView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Erl-1a-dpz">
-                                        <rect key="frame" x="7" y="410" width="306" height="43"/>
+                                        <rect key="frame" x="7" y="416" width="306" height="43"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="in-cart.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <connections>
-                                            <segue destination="TTb-YX-9gV" kind="push" identifier="pushToCart" id="otP-Kt-Axt"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" tag="1234567" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="z8n-fF-kt6">
-                                        <rect key="frame" x="9" y="237" width="147" height="31"/>
+                                        <rect key="frame" x="9" y="243" width="147" height="31"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <state key="normal" backgroundImage="pro-size-bg.png">
@@ -1371,7 +1310,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ZVQ-o1-zDh">
-                                        <rect key="frame" x="164" y="235" width="149" height="34"/>
+                                        <rect key="frame" x="164" y="241" width="149" height="34"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <state key="normal" backgroundImage="pro-size-bg.png"/>
@@ -1380,17 +1319,14 @@
                                         </connections>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" keyboardDismissMode="onDrag" editable="NO" selectable="NO" id="BqF-Jm-ZEj">
-                                        <rect key="frame" x="7" y="322" width="308" height="78"/>
+                                        <rect key="frame" x="7" y="328" width="308" height="78"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="hKV-Lx-bPf" id="x4F-1P-cqM"/>
-                                        </connections>
                                     </textView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quantity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vXQ-hI-iTC">
-                                        <rect key="frame" x="20" y="269" width="98" height="29"/>
+                                        <rect key="frame" x="20" y="275" width="98" height="29"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="14"/>
@@ -1398,7 +1334,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="QeS-fu-vQ1">
-                                        <rect key="frame" x="275" y="274" width="20" height="20"/>
+                                        <rect key="frame" x="275" y="280" width="20" height="20"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <state key="normal" backgroundImage="plus.png">
@@ -1409,14 +1345,14 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2pC-9t-ncK">
-                                        <rect key="frame" x="214" y="269" width="30" height="30"/>
+                                        <rect key="frame" x="214" y="275" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="14"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="pBG-oc-OkB">
-                                        <rect key="frame" x="167" y="273" width="20" height="20"/>
+                                        <rect key="frame" x="167" y="279" width="20" height="20"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <state key="normal" backgroundImage="minus.png">
@@ -1427,7 +1363,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Product Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="amc-lx-uKx">
-                                        <rect key="frame" x="19" y="302" width="136" height="21"/>
+                                        <rect key="frame" x="19" y="308" width="136" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="14"/>
@@ -1435,11 +1371,11 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textfield_border.png" id="hMs-nr-T5S">
-                                        <rect key="frame" x="8" y="298" width="303" height="1"/>
+                                        <rect key="frame" x="8" y="304" width="303" height="1"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" id="eBJ-yV-fOm">
-                                        <rect key="frame" x="12" y="264" width="147" height="140"/>
+                                        <rect key="frame" x="12" y="270" width="147" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pro-color-hover-bg.png" id="N1X-9e-FzK">
@@ -1460,7 +1396,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" id="siV-gc-Nih">
-                                        <rect key="frame" x="179" y="264" width="135" height="138"/>
+                                        <rect key="frame" x="179" y="270" width="135" height="138"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pro-color-hover-bg.png" id="UC2-ZR-soR">
@@ -1481,19 +1417,97 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Color" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bbW-Aq-KqU">
-                                        <rect key="frame" x="9" y="241" width="122" height="21"/>
+                                        <rect key="frame" x="9" y="247" width="122" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="14"/>
                                         <color key="textColor" red="0.8328866332" green="0.16343521899999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Size" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bz3-fk-CCO">
-                                        <rect key="frame" x="167" y="241" width="120" height="21"/>
+                                        <rect key="frame" x="167" y="247" width="120" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="14"/>
                                         <color key="textColor" red="0.8328866332" green="0.16343521899999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="5hd-w8-HPK">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="0GI-aw-Pqn">
+                                            <size key="itemSize" width="310" height="210"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell0" id="2xk-IS-gRZ" customClass="productCollectionImages">
+                                                <rect key="frame" x="0.0" y="15" width="310" height="210"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="310" height="210"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="23t-U8-Hs7">
+                                                            <rect key="frame" x="13" y="0.0" width="286" height="224"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
+                                                        <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hKV-Lx-bPf">
+                                                            <rect key="frame" x="33" y="15" width="248" height="170"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <state key="normal">
+                                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="actionViewLoader:" destination="lDJ-sf-aUw" eventType="touchUpInside" id="G0f-5b-vyf"/>
+                                                            </connections>
+                                                        </button>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tYt-kY-l3u">
+                                                            <rect key="frame" x="207" y="159" width="82" height="30"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <view contentMode="scaleToFill" id="f80-OG-TCu">
+                                                            <rect key="frame" x="20" y="8" width="271" height="32"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cart-transparent-bg.png" id="fe0-ov-PDf">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="268" height="33"/>
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                </imageView>
+                                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ery-vz-mi2">
+                                                                    <rect key="frame" x="5" y="0.0" width="256" height="33"/>
+                                                                    <autoresizingMask key="autoresizingMask"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                    <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="22"/>
+                                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        </view>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <connections>
+                                                    <outlet property="MImageItem" destination="23t-U8-Hs7" id="2PV-Ja-Mee"/>
+                                                    <outlet property="btnImageDetail" destination="hKV-Lx-bPf" id="bPt-zj-I4A"/>
+                                                    <outlet property="lblPrice" destination="tYt-kY-l3u" id="gQS-Do-Wh3"/>
+                                                    <outlet property="lblProductName" destination="ery-vz-mi2" id="T9N-Z9-8oO"/>
+                                                </connections>
+                                            </collectionViewCell>
+                                        </cells>
+                                        <connections>
+                                            <outlet property="dataSource" destination="lDJ-sf-aUw" id="RK7-oi-WgL"/>
+                                            <outlet property="delegate" destination="lDJ-sf-aUw" id="y2N-pd-pLP"/>
+                                        </connections>
+                                    </collectionView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
@@ -1520,25 +1534,19 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="MMainCollectionView" destination="5hd-w8-HPK" id="QHx-t0-phm"/>
                         <outlet property="activityViewCart" destination="mTv-N2-Eln" id="rUp-1z-DSN"/>
                         <outlet property="backgScroll" destination="t31-kn-7zM" id="blU-4d-KK2"/>
                         <outlet property="btnColor" destination="z8n-fF-kt6" id="PFv-hp-lqf"/>
-                        <outlet property="btnImageProduct" destination="hKV-Lx-bPf" id="CCY-i6-N0U"/>
                         <outlet property="btnSize" destination="ZVQ-o1-zDh" id="nCj-17-oeR"/>
                         <outlet property="lblColor" destination="bbW-Aq-KqU" id="QmN-Ae-ICB"/>
-                        <outlet property="lblPriceProduct" destination="tYt-kY-l3u" id="Wdy-uA-DUZ"/>
                         <outlet property="lblSize" destination="bz3-fk-CCO" id="45U-nO-X3W"/>
                         <outlet property="lblqty" destination="2pC-9t-ncK" id="KzC-fc-Yd5"/>
                         <outlet property="mBtnInCart" destination="Erl-1a-dpz" id="UcV-vd-9tf"/>
-                        <outlet property="mProdctImage" destination="23t-U8-Hs7" id="lKl-fd-Kec"/>
                         <outlet property="mTblColors" destination="tbu-5h-gKK" id="UWG-Gm-U4g"/>
                         <outlet property="mTblSizes" destination="yC7-1r-CZV" id="uZz-la-1Wz"/>
                         <outlet property="mViewColor" destination="eBJ-yV-fOm" id="NAx-tU-l6l"/>
-                        <outlet property="mViewProdctName" destination="f80-OG-TCu" id="piv-71-hCa"/>
                         <outlet property="mViewSize" destination="siV-gc-Nih" id="0Zk-az-NB8"/>
-                        <outlet property="pageControl" destination="9nA-On-Avd" id="By0-x3-TWL"/>
-                        <outlet property="productName" destination="ery-vz-mi2" id="OdO-aK-NZR"/>
-                        <outlet property="scrollView" destination="5DH-wN-11V" id="xr3-kh-7ir"/>
                         <outlet property="txtViewdescription" destination="BqF-Jm-ZEj" id="V9W-mB-xXH"/>
                     </connections>
                 </viewController>
@@ -1552,7 +1560,7 @@
                     </state>
                 </button>
             </objects>
-            <point key="canvasLocation" x="804" y="-336"/>
+            <point key="canvasLocation" x="793" y="-336"/>
         </scene>
     </scenes>
     <resources>

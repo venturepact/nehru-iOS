@@ -634,40 +634,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    selectedIndex=[NSString stringWithFormat:@"%d",indexPath.row];
-    [self performSegueWithIdentifier:@"pushToProductDetail" sender:selectedIndex];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    NSInteger productIndexpath=[sender integerValue];
-    if ([segue.identifier isEqualToString:@"pushToProductDetail"])
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    ProductDetailViewController *lvc = [storyboard instantiateViewControllerWithIdentifier:@"ProductDetail"];
+    if(isCasual)
     {
-//        [self.navigationController setNavigationBarHidden:NO];
-       ProductDetailViewController *detailController = segue.destinationViewController;
-        if(isCasual)
-        {
-            detailController.dataproduct = [self.arrayOfAllproducts objectAtIndex:productIndexpath];
-            /*UIView * fromView = self.view;
-            UIView * toView = detailController.view;
-            
-            // Transition using a page curl.
-            [UIView transitionFromView:fromView
-                                toView:toView
-                              duration:10.0
-                               options:UIViewAnimationOptionTransitionCurlUp
-                            completion:^(BOOL finished) {
-                                if (finished) {
-//                                    self.tabBarController.viewControllers = 1;
-                                }
-                            }];
-            NSLog(@"Do Nothing");*/
-        }
-        else if(isFormal)
-        {
-            detailController.dataproduct=[self.arrformalproducts objectAtIndex:productIndexpath];
-        }
+        lvc.dataproduct= [self.arrayOfAllproducts objectAtIndex:indexPath.row];
     }
+    else if(isFormal)
+    {
+        lvc.dataproduct=[self.arrformalproducts objectAtIndex:indexPath.row];
+    }
+    [self.navigationController pushViewController:lvc animated:YES];
 }
 
 #pragma mark -

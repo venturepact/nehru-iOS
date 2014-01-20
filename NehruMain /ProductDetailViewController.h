@@ -16,8 +16,9 @@
 #import "iCarousel.h"
 #import "ProductListingViewController.h"
 #import "PageFlippingViewController.h"
+#import "productCollectionImages.h"
 
-@interface ProductDetailViewController : UIViewController<UIScrollViewDelegate,UITextFieldDelegate,UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
+@interface ProductDetailViewController : UIViewController<UIScrollViewDelegate,UITextFieldDelegate,UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIGestureRecognizerDelegate>
 {
     PageController *pageControllerView;
     UINavigationController *navController;
@@ -28,12 +29,10 @@
    // IBOutlet UIImageView *imgViewProduct;
     IBOutlet UILabel *productName;
    
-    IBOutlet UILabel *lblproductDescription;
-    IBOutlet UILabel *lblproductQuantity;
-    IBOutlet UILabel *lblproductModelName;
-    IBOutlet UIButton *btnMoreProdctImages;
-    IBOutlet UIButton *btnCloseImagesView;
-    IBOutlet UIView *mViewMainLoader;
+
+    UIView *mViewMainLoader;
+    
+    NSMutableArray *MArrMainItems;
     BOOL isSize;
     BOOL isColour;
     
@@ -45,8 +44,6 @@
     
     IBOutlet UILabel *lblColor;
     IBOutlet UILabel *lblSize;
-    
-    IBOutlet UIBarButtonItem *btnBack;
     
     IBOutlet UITextView *txtViewdescription;
     
@@ -63,7 +60,7 @@
     IBOutlet UILabel *lblPriceProduct;
     IBOutlet UIView *imageView;
     IBOutlet UIButton *AddBtnwishlist;
-    IBOutlet UIImageView *mProdctImage;
+//    IBOutlet UIImageView *mProdctImage;
     IBOutlet UITableView *mTblColors;
     IBOutlet UITableView *mTblSizes;
   
@@ -73,8 +70,14 @@
     IBOutlet UIButton *mBtnInCart;
     
     IBOutlet UIView *mViewProdctName;
+    
+    
 }
-@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
+@property(nonatomic,assign)CGSize currentCellSize;
+@property(nonatomic,strong)NSMutableArray *arrImages;
+@property (nonatomic,strong) IBOutlet UICollectionView *MMainCollectionView;
+@property(nonatomic,strong)  IBOutlet UIImageView *mProdctImage;
+@property (nonatomic, strong) IBOutlet UIScrollView *scrollView1;
 @property (nonatomic, strong) IBOutlet UIPageControl *pageControl;
 @property (nonatomic, retain) iCarousel *carousel;
 @property (weak, nonatomic) IBOutlet UIScrollView *backgScroll;

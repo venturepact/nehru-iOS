@@ -8,6 +8,8 @@
 
 #import "ProductDetailViewController.h"
 
+static CGFloat kImageOriginHight = 240.f;
+
 @interface ProductDetailViewController ()
 @property (nonatomic, strong) NSMutableArray *pageImages;
 @property (nonatomic, strong) NSMutableArray *pageViews;
@@ -22,8 +24,11 @@
 @synthesize dataproduct,datamyCart;
 @synthesize pageImages = _pageImages;
 @synthesize carousel;
-@synthesize scrollView;
+@synthesize scrollView1;
 @synthesize pageControl;
+@synthesize mProdctImage;
+@synthesize arrImages;
+@synthesize currentCellSize;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,9 +47,7 @@
     [button setFrame:CGRectMake(280, 25, 30, 30)];
     self.navigationController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     NSLog(@"Product %@",self.dataproduct.ProductId);
-    // Set up the content size of the scroll view
-    self.backgScroll.contentSize=CGSizeMake(320, 500);
-    }
+}
 
 
 -(void)GetAllProductSizeAvailable
@@ -126,12 +129,12 @@
         [self.pageViews addObject:[NSNull null]];
     }
     
-    self.scrollView.frame=CGRectMake(0, 0, 320, 180);
-    CGFloat pageWidth = self.scrollView.frame.size.width;
-    NSInteger page = (NSInteger)floor((self.scrollView.contentOffset.x * 2.0f + pageWidth) / (pageWidth * 2.0f));
+    self.scrollView1.frame=CGRectMake(0, 0, 320, 180);
+    CGFloat pageWidth = self.scrollView1.frame.size.width;
+    NSInteger page = (NSInteger)floor((self.scrollView1.contentOffset.x * 2.0f + pageWidth) / (pageWidth * 2.0f));
     NSInteger count= self.pageImages.count;
     // [self.scrollView setContentOffset:CGPointMake(1536, 0) animated:YES];
-    [self.scrollView setContentSize:CGSizeMake(count*320,180)];
+    [self.scrollView1 setContentSize:CGSizeMake(count*320,180)];
     // Update the page control
     self.pageControl.currentPage = page;
     
@@ -162,7 +165,7 @@
     // Load an individual page, first seeing if we've already loaded it
     UIView *pageView = [self.pageViews objectAtIndex:page];
     if ((NSNull*)pageView == [NSNull null]) {
-        CGRect frame = self.scrollView.bounds;
+        CGRect frame = self.scrollView1.bounds;
         frame.origin.x = frame.size.width * page;
         frame.origin.y = 0.0f;
         UIImageView *imageView1=[[UIImageView alloc]initWithFrame:frame];
@@ -173,7 +176,7 @@
 //        [imageView1 addSubview:lblPriceProduct];
 //        [imageView1 addSubview:pageControl];
 //        [imageView1 addSubview:btnImageProduct];
-        [self.scrollView addSubview:imageView1];
+        [self.scrollView1 addSubview:imageView1];
         [self.pageViews replaceObjectAtIndex:page withObject:imageView1];
     }
 }
@@ -199,7 +202,7 @@
 
 -(void)ClickedBackBtn:(id)sender
 {
-        [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 //Load custom View
@@ -229,25 +232,30 @@
     UIImageView *imageView1=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"nehru-logo.png"]];
     self.navigationItem.titleView=imageView1;
     
+//    self.navigationController.navigationBar.translucent = NO;
+
+    MArrMainItems = [[NSMutableArray alloc]initWithObjects:@"b2.jpg",@"b3.jpg",@"b4.jpg",@"b5.jpg",@"b6.jpg",@"b7.jpg",@"b8.jpg",@"b9.jpg",@"b10.jpg",@"b11.jpg", nil];
+    
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
+        self.edgesForExtendedLayout = UIRectEdgeNone;
     isSize=NO;
     isColour=NO;
     [mTblColors setHidden:YES];
     [mTblSizes setHidden:YES];
     [mViewColor setHidden:YES];
     [mViewSize setHidden:YES];
-
     [mBtnInCart setHidden:YES];
     [activityViewCart setHidden:YES];
-    
+    self.datamyCart=[DataMyCart sharedCart];
     self.dataproduct.productreqQuantity=1;
     //Adding the viewed object into the DataHistory singleton class.
     //[mViewMainLoader setHidden:YES];
     // btnImageProduct.imageView.image=[UIImage imageNamed:@"photo1.png"];
     
-    mProdctImage.image =self.dataproduct.imgproduct;
-  
+    self.mProdctImage.image =self.dataproduct.imgproduct;
+   // btnImageProduct.backgroundColor=[UIColor colorWithPatternImage:self.dataproduct.imgproduct];
     NSLog(@"Dataproduct %@",self.dataproduct);
-    self.backgScroll.contentSize=CGSizeMake(320, 500);
+//    self.backgScroll.contentSize=CGSizeMake(320, 500);
     self.itemColorView.layer.borderColor=[UIColor lightGrayColor].CGColor;
     self.itemColorView.layer.borderWidth=1.0f;
     
@@ -255,9 +263,13 @@
     self.itemSizeView.layer.borderWidth=1.0f;
     [self displayDataOnscreen];
 
+    CGSize tmpSize = self.MMainCollectionView.bounds.size;
+    currentCellSize = CGSizeMake( tmpSize.width, tmpSize.height);
+    
 //    mArrColors=[[NSMutableArray alloc]initWithObjects:@"White",@"Black",@"Red",@"Green",@"Blue", nil];
 //    mArrSizes = [[NSMutableArray alloc]initWithObjects:@"Small",@"Medium",@"Large",@"Extra Large",@"Extra Extra Large", nil];
     [self GetAllProductSizeAvailable];
+    [self LoadImages];
 }
 
 -(void)GetProductImagesFromParse
@@ -411,57 +423,95 @@
     }
 }
 
--(void)addedToCartAlert {
-    UIAlertView *alertview=[[UIAlertView alloc]initWithTitle:@"Got Success" message:@"Product Successfully Added to cart" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    [alertview show];
+#pragma UICollectionViewDelegates
+
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
 }
+
+-(NSInteger)collectionView :(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+        return [self.arrImages count];
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView
+                  layout:(UICollectionViewLayout*)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return currentCellSize;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *identifier;
+    productCollectionImages *cell;
+   
+        if (indexPath.row==0) {
+            identifier = @"Cell0";
+        }
+    cell =[collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    cell.MImageItem.image = [self.arrImages objectAtIndex:indexPath.row];
+    cell.lblProductName.text=self.dataproduct.ProductName;
+    cell.lblPrice.text=[NSString stringWithFormat:@"%0.2f",self.dataproduct.productUnitprice];
+    return cell;
+}
+
+//- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    UISwipeGestureRecognizer *swipegesture=[[UISwipeGestureRecognizer alloc]init];
+//    [swipegesture setDelegate:self];
+//    [swipegesture addTarget:self action:@selector(ClickedHandle:)];
+//    [swipegesture setValue:indexPath forKey:@"ProductId"];
+//}
+//
+//-(void)ClickedHandle:(UISwipeGestureRecognizer*)swipeGesture
+//{
+//    NSIndexPath *collectionViewIndex=[swipeGesture valueForKey:@"ProductId"];
+//    NSLog(@"Collection View index %d",collectionViewIndex.row);
+//}
 
 -(void)displayDataOnscreen
 {
     NSLog(@"Dataproduct %@",self.dataproduct);
     self.pageImages=[[NSMutableArray alloc]init];
-    lblproductModelName.text=self.dataproduct.ProductModel;
-//    lblproductModelName.font=[UIFont fontWithName:@"Calibri" size:12.0f];
-    lblproductQuantity.text=[NSString stringWithFormat:@"%d",dataproduct.productquantity];
-//    lblproductQuantity.font=[UIFont fontWithName:@"Calibri" size:12.0f];
-//    lblPriceProduct.font=[UIFont fontWithName:@"Calibri" size:12.0f];
+
+    lblPriceProduct.font=[UIFont fontWithName:@"Calibri" size:12.0f];
     lblPriceProduct.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"pro-price-bg.png"]];
     lblPriceProduct.text=[NSString stringWithFormat:@"$% 0.2f",self.dataproduct.productUnitprice];
     productName.text=self.dataproduct.ProductName;
-//    productName.font=[UIFont fontWithName:@"Calibri" size:18.0f];
+    productName.font=[UIFont fontWithName:@"Calibri" size:18.0f];
     lblPriceProduct.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"pro-price-bg.png"]];
     btnImageProduct.imageView.image = self.dataproduct.imgproduct;
     
     NSLog(@"Product Description %@",self.dataproduct.productDescription);
     txtViewdescription.text=self.dataproduct.productDescription;
     NSLog(@"product Images %@",self.dataproduct.productImages);
-    NSMutableArray *arrimages=[[NSMutableArray alloc]init];
-    arrimages=self.dataproduct.productImages;
-    NSLog(@"Arr images %@",arrimages);
-    UIImage *image = [UIImage imageNamed:@"bg1.jpg"];
-    UIImage *image1=[UIImage imageNamed:@"bg2.jpg"];
-    UIImage *image2=[UIImage imageNamed:@"bg3.jpg"];
-    UIImage *image3=[UIImage imageNamed:@"bg4.jpg"];
-    
-    [self.pageImages addObject:image];
-    [self.pageImages addObject:image1];
-    [self.pageImages addObject:image2];
-    [self.pageImages addObject:image3];
-    
-//    for(int i=0;i<[arrimages count];i++)
-//    {
-//        PFFile *theImage =[arrimages objectAtIndex:i];
-//        [theImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
-//            UIImage *image = [UIImage imageWithData:data];
-//            
-//            NSLog(@"Image %@",image);
-//            
-//            
-//            NSLog(@"Page Images %@",self.pageImages);
-//        }];
-//    }
-   // [self loadVisiblePages];
+    }
+
+
+-(void)LoadImages
+{
+    self.pageImages=[[NSMutableArray alloc]init];
+    self.arrImages=[[NSMutableArray alloc]init];
+    self.pageImages=self.dataproduct.productImages;
+    NSLog(@"Arr images %@",self.pageImages);
+    for(int i=0;i<[self.pageImages count];i++)
+    {
+        PFFile *theImage =(PFFile*)[self.pageImages objectAtIndex:i];
+        [theImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
+            UIImage *image = [UIImage imageWithData:data];
+            [self.arrImages addObject:image];
+            
+            if(i==5)
+            {
+                NSLog(@"Arr Images name %@",self.arrImages);
+                [self.MMainCollectionView reloadData];
+            }
+        }];
+       
+      
+    }
 }
+
 
 //Adding product to wishlist in singleton and to the wishlist in parse database.
 -(IBAction)AddProducttoWishlist:(id)sender
@@ -519,7 +569,7 @@
     else if([segue.identifier isEqualToString:@"pushToCart"])
     {
     CartViewController *detailController = segue.destinationViewController;
-        NSLog(@"Detail View controller %@",detailController);
+    NSLog(@"Detail View controller %@",detailController);
     }
 }
 
@@ -641,26 +691,29 @@
             UIAlertView *alertColor = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Please Select Color and Size" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
             [alertColor show];
         }
-        else if ([lblColor.text isEqualToString:@"Select Color"]) {
-            UIAlertView *alertColor = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Please Select Color" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-            [alertColor show];
-        }
-        else if ([lblSize.text isEqualToString:@"Select Size"]) {
-            UIAlertView *alertColor = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Please Select Size" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-            [alertColor show];
-        }
+    else if ([lblColor.text isEqualToString:@"Select Color"]) {
+        UIAlertView *alertColor = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Please Select Color" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alertColor show];
+    }
+   else if ([lblSize.text isEqualToString:@"Select Size"]) {
+        UIAlertView *alertColor = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Please Select Size" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alertColor show];
+    }
     }
     else {
-        
-        [activityViewCart setHidden:NO];
-        [activityViewCart startAnimating];
-        self.datamyCart=[DataMyCart sharedCart];
-        
-        NSLog(@"the array shared Cart.%@",[[DataMyCart sharedCart]getArray]);
-        NSString *randomproductId=[NSString stringWithFormat:@"%@%@",self.dataproduct.productSizeId,self.dataproduct.productColorId];
-        NSLog(@"RandomProductId %@",randomproductId);
-        self.dataproduct.RandomProductId=randomproductId;
-        
+    
+    [activityViewCart setHidden:NO];
+    [activityViewCart startAnimating];
+    
+    if([[self.datamyCart getArray]count]>0)
+    {
+    DataProduct *oldproduct=[[self.datamyCart getArray]objectAtIndex:0];
+    NSLog(@"OLd product %@",oldproduct.RandomProductId);
+    }
+    NSString *randomproductId=[NSString stringWithFormat:@"%@%@%@",self.dataproduct.productSizeId,self.dataproduct.productColorId,self.dataproduct.ProductId];
+    NSLog(@"New RandomProductId %@",randomproductId);
+    self.dataproduct.RandomProductId=randomproductId;
+    
         if([self CheckProductQuantity])
         {
             [self.datamyCart addProduct:self.dataproduct];
@@ -671,16 +724,15 @@
             [alertview show];
         }
         
-        NSLog(@"Data my Cart %@",self.datamyCart);
-        [activityViewCart startAnimating];
-        if (_timer == nil)
-        {
-            _timer = [NSTimer scheduledTimerWithTimeInterval:0.5f
-                                                      target:self
-                                                    selector:@selector(showInCart)
-                                                    userInfo:nil
-                                                     repeats:YES];
-        }
+    [activityViewCart startAnimating];
+    if (_timer == nil)
+    {
+        _timer = [NSTimer scheduledTimerWithTimeInterval:0.5f
+                                                  target:self
+                                                selector:@selector(showInCart)
+                                                userInfo:nil
+                                                 repeats:YES];
+    }
     }
 }
 
@@ -739,6 +791,7 @@
 }
 
 
+
 -(void)showInCart {
     [mBtnInCart setHidden:NO];
 }
@@ -747,7 +800,12 @@
 {
     if([[[DataMyCart sharedCart]getArray]count]>0)
     {
-        [self performSegueWithIdentifier:@"pushToCart" sender:0];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+        CartViewController *lvc = [storyboard instantiateViewControllerWithIdentifier:@"CartView"];
+//        lvc.dataproduct= [self.arrayOfAllproducts objectAtIndex:indexPath.row];
+        [self.navigationController pushViewController:lvc animated:YES];
+
+//    [self performSegueWithIdentifier:@"pushToCart" sender:0];
     }
     else
     {
@@ -760,12 +818,31 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
 // Load the pages which are now on screen
-    
-    if(scrollView==self.scrollView)
-    {
-       [self loadVisiblePages];
-    }
+//    if(scrollView==self.scrollView1)
+//    {
+//  //  [self loadVisiblePages];
+//    }
 //    [self loadVisiblePages];
+     CGPoint contentOffset = scrollView1.contentOffset;
+//    NSLog(@"Content offset x %f",contentOffset.x);
+//    NSLog(@"Content offset y %f",contentOffset.y);
+    CGFloat yOffset  = scrollView1.contentOffset.y;
+    if(scrollView==self.scrollView1)
+    {
+        
+        [self.backgScroll addSubview:self.scrollView1];
+    if (yOffset < -kImageOriginHight) {
+        CGRect f = self.mProdctImage.frame;
+        f.origin.y = yOffset;
+        f.size.height =  -yOffset;
+        self.mProdctImage.frame = f;
+        if(scrollView==self.backgScroll)
+        {
+            self.backgScroll.contentOffset=contentOffset;
+        }
+    }
+    }
+   
 }
 
 
