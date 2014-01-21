@@ -12,6 +12,5 @@
 
 @interface nAppDelegate : UIResponder <UIApplicationDelegate>
 @property (strong, nonatomic) UIWindow *window;
-@property(strong,nonatomic)DataMyCart *datamycart;
-@property(strong,nonatomic)DataWishlist *datawishlist;
+
 @end

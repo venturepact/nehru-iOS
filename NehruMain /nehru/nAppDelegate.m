@@ -10,7 +10,6 @@
 #import <Parse/Parse.h>
 
 @implementation nAppDelegate
-@synthesize datamycart,datawishlist;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -18,13 +17,7 @@
     [Parse setApplicationId:@"e9TfdXlTdkHGWx4O7hxgFonMAny0kHWrX4jgsHRs"
                   clientKey:@"jRz99oh0UtBej0sBLJSUHnGxYVhiD9CARAoZVIKk"];
     
-    //initializing the class datacart.
-    self.datamycart=[DataMyCart sharedCart];
-    //self.datamycart.myCartArray=[[NSMutableArray alloc]init];
-    
-    //initializing the class wishlist.
-    self.datawishlist=[DataWishlist sharedWishList];
-    //self.datawishlist.myWishlistArray=[[NSMutableArray alloc]init];
+   
     return YES;
 }
 							

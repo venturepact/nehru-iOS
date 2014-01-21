@@ -16,7 +16,6 @@
 @property(nonatomic,strong)NSMutableArray *myCartArray;
 + (id)sharedCart;
 - (NSMutableArray *) getArray;
-- (void)addArray:(NSObject *)objectToAdd;
 -(void)mutableCopyArrayCart:(NSMutableArray*)ArrayToCopy;
 //additions for cart
 - (BOOL)containsProduct:(DataProduct*)product;

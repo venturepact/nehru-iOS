@@ -288,14 +288,31 @@
                             UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Successfull SignUp" message:@"Successfull SignUp" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                             alert.tag=34559;
                             [alert show];
-                            
-                            NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
-//                          [userDefaults setObject:txtEmailId.text forKey:@"UserId"];
-                            [userDefaults setValue:txtfirstname.text forKey:@"firstName"];
-                            [userDefaults setValue:txtlastname.text forKey:@"lastName"];
-                            [userDefaults setValue:txtEmailId.text forKey:@"emailId"];
-                            [userDefaults synchronize];
-                            
+                            PFQuery *pfquery=[PFQuery queryWithClassName:@"NehruUser"];
+                            [pfquery whereKey:@"emailId" equalTo:txtEmailId.text];
+                            [pfquery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                                if (!error) {
+                                    // The find succeeded.
+                                    if(objects.count==0)
+                                    {
+                                        UIAlertView *alertview=[[UIAlertView alloc]initWithTitle:@"Incorrect Information" message:@"Username or Password incorrect" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:Nil, nil];
+                                        [alertview show];
+                                    }
+                                    else if(objects.count==1){
+                                        PFObject *AppUser=[objects objectAtIndex:0];
+                                       NSString *userid = AppUser[@"objectId"];
+                                        NSLog(@"App User %@",AppUser);
+                                        
+                                NSUserDefaults *userDefaults=[NSUserDefaults standardUserDefaults];
+                                    
+                                [userDefaults setObject:userid forKey:@"UserId"];
+                                [userDefaults setValue:txtfirstname.text forKey:@"firstName"];
+                                [userDefaults setValue:txtlastname.text forKey:@"lastName"];
+                                [userDefaults setValue:txtEmailId.text forKey:@"emailId"];
+                                [userDefaults synchronize];
+                                    }
+                                }
+                            }];
                             [self ResignKeys];
                         }
                         else{
@@ -371,7 +388,7 @@
                 else if(objects.count==1){
                     PFObject *AppUser=[objects objectAtIndex:0];
                     NSLog(@"App User %@",AppUser);
-                    NSString *str1=AppUser[@"objectId"];
+                    NSString *str1=AppUser.objectId;
                     NSString *str2=AppUser[@"firstName"];
                     NSString *str3=AppUser[@"lastName"];
                     NSString *str4=AppUser[@"emailId"];

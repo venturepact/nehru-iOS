@@ -14,7 +14,7 @@
 #pragma mark Singleton Methods
 
 + (id)sharedCart {
-    static DataMyCart *sharedCart = nil;
+    static DataMyCart *sharedCart;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedCart = [[self alloc] init];
@@ -24,7 +24,7 @@
 
 - (id)init {
     if (self = [super init]) {
-       self.myCartArray = [[NSMutableArray alloc] init];
+        self.myCartArray = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -33,9 +33,6 @@
     return self.myCartArray;
 }
 
-- (void)addArray:(NSObject *)objectToAdd{
-    [self.myCartArray addObject:objectToAdd];
-}
 
 -(void)mutableCopyArrayCart:(NSMutableArray*)ArrayToCopy
 {
@@ -44,6 +41,17 @@
 }
 
 - (BOOL)containsProduct:(DataProduct *)product {
+    NSLog(@"Data product Id %@",product.ProductId);
+    if([self.myCartArray count]>0)
+    {
+        DataProduct *dproduct=[self.myCartArray objectAtIndex:0];
+        NSLog(@"Product Id %@",dproduct.ProductId);
+        NSLog(@"Random Product id %@",dproduct.RandomProductId);
+    }
+    NSLog(@"Data product Id %@",product.ProductId);
+    NSLog(@"OLd Product random id %@",product.RandomProductId);
+    
+    NSLog(@"New product random id %@",product.RandomProductId);
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"RandomProductId=%@", product.RandomProductId];
     NSArray* duplicateProducts = [self.myCartArray filteredArrayUsingPredicate:predicate];
     return (duplicateProducts.count > 0) ? YES : NO;

@@ -14,6 +14,7 @@
 #import "WishListViewController.h"
 #import "PageController.h"
 #import "iCarousel.h"
+#import "nAppDelegate.h"
 #import "ProductListingViewController.h"
 #import "PageFlippingViewController.h"
 #import "productCollectionImages.h"
@@ -77,14 +78,10 @@
 @property(nonatomic,strong)NSMutableArray *arrImages;
 @property (nonatomic,strong) IBOutlet UICollectionView *MMainCollectionView;
 @property(nonatomic,strong)  IBOutlet UIImageView *mProdctImage;
-@property (nonatomic, strong) IBOutlet UIScrollView *scrollView1;
-@property (nonatomic, strong) IBOutlet UIPageControl *pageControl;
-@property (nonatomic, retain) iCarousel *carousel;
-@property (weak, nonatomic) IBOutlet UIScrollView *backgScroll;
+@property (strong, nonatomic) IBOutlet UIScrollView *backgScroll;
 @property (nonatomic, strong) UIView *maskView;
-@property (weak) id pickValue;
 @property(nonatomic,strong)DataProduct *dataproduct;
-@property(nonatomic,strong)DataMyCart *datamyCart;
+@property(nonatomic,strong)DataMyCart *datacart;
 
 //UIViews on the page
 @property(weak) IBOutlet UIView *itemNameView;

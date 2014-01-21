@@ -11,6 +11,7 @@
 #import "DataMyCart.h"
 #import "DataProduct.h"
 #import "nViewController.h"
+#import "nAppDelegate.h"
 #import "ShippingDetailsViewController.h"
 
 @interface CartViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>
@@ -21,11 +22,13 @@
     IBOutlet UIButton *btnBack;
     
     IBOutlet UIView *viewcheckout;
+    NSMutableArray *arrofProductIds;
+    NSMutableArray *arrofRandomIds;
 }
 @property(nonatomic,strong)IBOutlet UIScrollView *mainScrollView;
 @property(nonatomic,strong)UITabBarController *tabbarController;
-@property(nonatomic,strong)DataMyCart *datacart;
 @property(nonatomic,strong)DataProduct *dataProduct;
+@property(nonatomic,strong)DataMyCart *datacart;
 @property(nonatomic,strong)NSMutableArray *cartArray;
 @property(nonatomic,strong)IBOutlet UIView *BckViewTotal;
 @property(nonatomic,assign)IBOutlet UILabel* lblsubtotal;

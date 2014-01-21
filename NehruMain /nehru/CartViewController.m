@@ -17,11 +17,11 @@
 @synthesize lblvat;
 @synthesize lblecotax;
 @synthesize lbltotal;
-@synthesize datacart;
 @synthesize dataProduct;
 @synthesize BckViewTotal;
 @synthesize cartArray;
 @synthesize tabbarController;
+@synthesize datacart;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -48,16 +48,17 @@
     // Do any additional setup after loading the view from its nib.
     
     self.navigationItem.title=@"Cart";
-    self.dataProduct=[[DataProduct alloc]init];
-    self.datacart=[DataMyCart sharedCart];
-    self.cartArray=[[NSMutableArray alloc]init];
-    self.cartArray=[self.datacart getArray];
+//    self.dataProduct=[[DataProduct alloc]init];
+//    
+//    self.datacart=[DataMyCart sharedCart];
+//    self.cartArray=[[NSMutableArray alloc]init];
+//    self.cartArray=[[DataMyCart sharedCart]getArray];
+//    
+//    NSLog(@"cart Array %@",self.cartArray);
+//    [self.datacart mutableCopyArrayCart:self.cartArray];
+//    [self calculatetheTotal];
     
-    NSLog(@"cart Array %@",self.cartArray);
-    [self.datacart mutableCopyArrayCart:self.cartArray];
-    [self calculatetheTotal];
-    
-    [tblView1 reloadData];
+//    [tblView1 reloadData];
     if(IS_HEIGHT_GTE_568)
     {
         viewcheckout.frame=CGRectMake(0,400 , 320, 46);
@@ -79,9 +80,10 @@
     }
     self.navigationItem.title=@"Cart";
     self.dataProduct=[[DataProduct alloc]init];
+    
     self.datacart=[DataMyCart sharedCart];
     self.cartArray=[[NSMutableArray alloc]init];
-    self.cartArray=[self.datacart getArray];
+    self.cartArray=[[DataMyCart sharedCart]getArray];
     
     NSLog(@"cart Array %@",self.cartArray);
     [self.datacart mutableCopyArrayCart:self.cartArray];
@@ -117,8 +119,6 @@
     DataProduct *Objdataproduct=[[DataProduct alloc]init];
     Objdataproduct=[self.cartArray objectAtIndex:indexPath.row];
     NSLog(@"Image Name %@",Objdataproduct.ProductImage);
-//    mainTableCell.imgProduct.image=[UIImage imageNamed:Objdataproduct.ProductImage];
-        
         PFFile *theImage =(PFFile*)Objdataproduct.ProductImage;
         [theImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
             UIImage *image = [UIImage imageWithData:data];
@@ -221,6 +221,49 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+-(void)CartProducts
+{
+    NSUserDefaults *userdefualts=[NSUserDefaults standardUserDefaults];
+    NSString *struserId= [userdefualts objectForKey:@"UserId"];
+    //getting all the products in the database.
+    PFQuery *query = [PFQuery queryWithClassName:@"Cart"];
+    [query whereKey:@"UserId" equalTo:struserId];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            // Do something with the found objects
+            for (PFObject *object in objects) {
+                //getting the category Name and Object Id's
+                DataProduct *dataproduct=[[DataProduct alloc]init];
+                dataproduct.ProductId=object[@"ProductId"];
+                dataproduct.ProductImage=object[@"RandomProductId"];
+                
+                PFFile *theImage =(PFFile*)dataproduct.ProductImage;
+                [theImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
+                    UIImage *image = [UIImage imageWithData:data];
+                    dataproduct.imgproduct=image;
+                }];
+                dataproduct.ProductName=object[@"ProductId"];
+                dataproduct.RandomProductId=object[@"RandomProductId"];
+                dataproduct.ProductModel=object[@"productModel"];
+                NSString *strproductQty=object[@"productQty"];
+                NSString *strProductPrice=object[@"productPrice"];
+                dataproduct.productImages=object[@"ProductImages"];
+                dataproduct.isfavorite=object[@"isfavorite"];
+                dataproduct.productDescription=object[@"ProductDescription"];
+                NSLog(@"Data product favorite %@",dataproduct.isfavorite);
+                dataproduct.productquantity=[strproductQty integerValue];
+                dataproduct.productUnitprice=[strProductPrice floatValue];
+                dataproduct.CategoryId=object[@"categoryid"];
+            }
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+
 }
 
 -(IBAction)ClickedCheckout:(id)sender
