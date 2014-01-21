@@ -173,6 +173,7 @@ static CGFloat kImageOriginHight = 240.f;
 //    mArrSizes = [[NSMutableArray alloc]initWithObjects:@"Small",@"Medium",@"Large",@"Extra Large",@"Extra Extra Large", nil];
     [self GetAllProductSizeAvailable];
     [self LoadImages];
+    [self GetAllProductsFromCart];
 }
 
 
@@ -541,7 +542,7 @@ static CGFloat kImageOriginHight = 240.f;
     
     [activityViewCart setHidden:NO];
     [activityViewCart startAnimating];
-    self.datacart=[DataMyCart sharedCart];
+//    self.datacart=[DataMyCart sharedCart];
     
     NSString *randomproductId=[NSString stringWithFormat:@"%@%@%@",self.dataproduct.productSizeId,self.dataproduct.productColorId,self.dataproduct.ProductId];
     NSLog(@"New RandomProductId %@",randomproductId);
@@ -587,6 +588,11 @@ static CGFloat kImageOriginHight = 240.f;
 //Saving the products into the cart.
 -(IBAction)AddingProductToCartOnParse:(id)sender
 {
+    NSString *randomproductId=[NSString stringWithFormat:@"%@%@%@",self.dataproduct.productSizeId,self.dataproduct.productColorId,self.dataproduct.ProductId];
+    NSLog(@"New RandomProductId %@",randomproductId);
+    self.dataproduct.RandomProductId=randomproductId;
+    if([self CheckProductQuantity])
+    {
     NSUserDefaults *userdefualts=[NSUserDefaults standardUserDefaults];
     NSString *struserId= [userdefualts objectForKey:@"UserId"];
     NSLog(@"User Id %@",struserId);
@@ -613,8 +619,6 @@ static CGFloat kImageOriginHight = 240.f;
     else {
     [activityViewCart setHidden:NO];
     [activityViewCart startAnimating];
-    NSString *randomproductId=[NSString stringWithFormat:@"%@%@%@",self.dataproduct.productSizeId,self.dataproduct.productColorId,self.dataproduct.ProductId];
-    NSLog(@"New RandomProductId %@",randomproductId);
         
     PFQuery *validLoginQuery=[PFQuery queryWithClassName:@"Cart"];
     [validLoginQuery whereKey:@"RandomProductId" equalTo:randomproductId];
@@ -624,6 +628,8 @@ static CGFloat kImageOriginHight = 240.f;
         if(objects.count==1){
         UIAlertView *alertview=[[UIAlertView alloc]initWithTitle:@"Already" message:@"Product already exists in the database." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:Nil, nil];
                     [alertview show];
+            [activityViewCart setHidden:YES];
+            [activityViewCart stopAnimating];
     }
     else{
     PFObject *usrSignUp=[PFObject objectWithClassName:@"Cart"];
@@ -656,20 +662,71 @@ static CGFloat kImageOriginHight = 240.f;
                                                              repeats:NO];
                 }
             }
-            else{
-               
-            }
         }
         else {
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
+            
         }
     }];
     }
     }}];
     }
+    }
+    else
+    {
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Not available" message:@"Product not available on store" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:Nil, nil];
+        [alert show];
+    }
 }
 
+//Check the parse database to see if the productQuantity is available or not for this product.
+-(void)GetAllProductsFromCart
+{
+    productArrayInCart=[[NSMutableArray alloc]init];
+    //getting all the products in the database.
+    PFQuery *query = [PFQuery queryWithClassName:@"Cart"];
+    [query whereKey:@"ProductId" equalTo:self.dataproduct.ProductId];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            // Do something with the found objects
+            for (PFObject *object in objects) {
+                //getting the category Name and Object Id's
+                DataProduct *dataproduct1=[[DataProduct alloc]init];
+                dataproduct1.ProductId=object[@"ProductId"];
+                dataproduct1.RandomProductId=object[@"RandomProductId"];
+                dataproduct1.ProductName=object[@"productName"];
+                dataproduct1.CategoryId=object[@"categoryid"];
+                dataproduct1.productSize=object[@"productSize"];
+                dataproduct1.productDescription=object[@"ProductDescription"];
+                dataproduct1.productColor=object[@"productColor"];
+                dataproduct1.ProductModel=object[@"productModel"];
+                
+                NSString *reqqty=object[@"RequiredQuantity"];
+                dataproduct1.productreqQuantity=[reqqty integerValue];
+                NSString *strproductQty=object[@"ProductQty"];
+                NSString *strProductPrice=object[@"ProductPrice"];
+                dataproduct1.ProductImage=object[@"ProductImage"];
+                dataproduct1.productImages=object[@"ProductImages"];
+                dataproduct1.productDescription=object[@"ProductDescription"];
+                dataproduct1.productquantity=[strproductQty integerValue];
+                dataproduct1.productUnitprice=[strProductPrice floatValue];
+                [productArrayInCart addObject:dataproduct1];
+                
+                PFFile *theImage =(PFFile*)dataproduct1.ProductImage;
+                [theImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
+                    UIImage *image = [UIImage imageWithData:data];
+                    dataproduct1.imgproduct=image;
+                }];
+            }
+            NSLog(@"Products available on the Cart table %@",productArrayInCart);
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+}
 
 -(IBAction)ClickedIncreaseQty:(id)sender
 {
@@ -706,7 +763,6 @@ static CGFloat kImageOriginHight = 240.f;
 -(BOOL)CheckProductQuantity
 {
     NSInteger getTotalQty=0;
-    NSMutableArray *productArrayInCart=[self.datacart getArray];
     
     for (DataProduct* product in productArrayInCart) {
         NSLog(@"Data product Id %@",self.dataproduct.ProductId);
@@ -727,12 +783,10 @@ static CGFloat kImageOriginHight = 240.f;
     }
 }
 
-
-
 -(void)showInCart {
     if(mBtnInCart.selected)
     {
-        mBtnInCart.selected=NO;
+    mBtnInCart.selected=NO;
     [activityViewCart setHidden:YES];
     [activityViewCart stopAnimating];
     [mBtnInCart setBackgroundImage:[UIImage imageNamed:@"in-cart.png"] forState:UIControlStateNormal];
@@ -749,20 +803,20 @@ static CGFloat kImageOriginHight = 240.f;
 
 -(void)clickedShowCart:(id)sender
 {
-    if([[[DataMyCart sharedCart]getArray]count]>0)
-    {
+//    if([[[DataMyCart sharedCart]getArray]count]>0)
+//    {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
         CartViewController *lvc = [storyboard instantiateViewControllerWithIdentifier:@"CartView"];
 //        lvc.dataproduct= [self.arrayOfAllproducts objectAtIndex:indexPath.row];
         [self.navigationController pushViewController:lvc animated:YES];
 
 //    [self performSegueWithIdentifier:@"pushToCart" sender:0];
-    }
-    else
-    {
-        UIAlertView *alertview=[[UIAlertView alloc]initWithTitle:@"Empty Cart" message:@"Please add product into cart" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alertview show];
-    }
+//    }
+//    else
+//    {
+//        UIAlertView *alertview=[[UIAlertView alloc]initWithTitle:@"Empty Cart" message:@"Please add product into cart" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        [alertview show];
+//    }
 }
 
 #pragma mark - UIScrollViewDelegate

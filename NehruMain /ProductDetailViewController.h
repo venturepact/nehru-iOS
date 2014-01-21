@@ -72,7 +72,7 @@
     
     IBOutlet UIView *mViewProdctName;
     
-    
+    NSMutableArray *productArrayInCart;
 }
 @property(nonatomic,assign)CGSize currentCellSize;
 @property(nonatomic,strong)NSMutableArray *arrImages;
@@ -84,11 +84,6 @@
 @property(nonatomic,strong)DataMyCart *datacart;
 
 //UIViews on the page
-@property(weak) IBOutlet UIView *itemNameView;
-@property(weak) IBOutlet UIView *itemDescView;
-@property(weak) IBOutlet UIView *itemColorView;
-@property(weak) IBOutlet UIView *itemSizeView;
-@property(weak) IBOutlet UIView *itemQuantityView;
 -(IBAction)clickedShowCart:(id)sender;
 -(IBAction)ClickedSelectSize:(id)sender;
 -(IBAction)ClickedSelectColor:(id)sender;
@@ -97,6 +92,7 @@
 -(void)displayDataOnscreen;
 -(void)AddProductImages;
 -(void)GetProductImagesFromParse;
+-(void)GetAllProductsFromCart;
 -(IBAction)closeImageLoaderView:(id)sender;
 -(IBAction)ClickedBackBtn:(id)sender;
 -(IBAction)actionViewLoader:(id)sender;

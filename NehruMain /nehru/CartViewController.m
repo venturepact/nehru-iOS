@@ -51,7 +51,7 @@
 //    self.dataProduct=[[DataProduct alloc]init];
 //    
 //    self.datacart=[DataMyCart sharedCart];
-//    self.cartArray=[[NSMutableArray alloc]init];
+    self.cartArray=[[NSMutableArray alloc]init];
 //    self.cartArray=[[DataMyCart sharedCart]getArray];
 //    
 //    NSLog(@"cart Array %@",self.cartArray);
@@ -61,7 +61,7 @@
 //    [tblView1 reloadData];
     if(IS_HEIGHT_GTE_568)
     {
-        viewcheckout.frame=CGRectMake(0,400 , 320, 46);
+        viewcheckout.frame=CGRectMake(0,460 , 320, 46);
     }
     else
     {
@@ -81,15 +81,16 @@
     self.navigationItem.title=@"Cart";
     self.dataProduct=[[DataProduct alloc]init];
     
-    self.datacart=[DataMyCart sharedCart];
+//    self.datacart=[DataMyCart sharedCart];
     self.cartArray=[[NSMutableArray alloc]init];
-    self.cartArray=[[DataMyCart sharedCart]getArray];
+//    self.cartArray=[[DataMyCart sharedCart]getArray];
     
     NSLog(@"cart Array %@",self.cartArray);
-    [self.datacart mutableCopyArrayCart:self.cartArray];
+//    [self.datacart mutableCopyArrayCart:self.cartArray];
     [self calculatetheTotal];
     
     [tblView1 reloadData];
+    [self CartProducts];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -238,32 +239,36 @@
                 //getting the category Name and Object Id's
                 DataProduct *dataproduct=[[DataProduct alloc]init];
                 dataproduct.ProductId=object[@"ProductId"];
-                dataproduct.ProductImage=object[@"RandomProductId"];
+                dataproduct.RandomProductId=object[@"RandomProductId"];
+                dataproduct.ProductName=object[@"productName"];
+                dataproduct.CategoryId=object[@"categoryid"];
+                dataproduct.productSize=object[@"productSize"];
+                dataproduct.productDescription=object[@"ProductDescription"];
+                dataproduct.productColor=object[@"productColor"];
+                dataproduct.ProductModel=object[@"productModel"];
+                NSString *strproductQty=object[@"ProductQty"];
+                NSString *strProductPrice=object[@"ProductPrice"];
+                NSString *strreqquantity=object[@"RequiredQuantity"];
+                dataproduct.productreqQuantity=[strreqquantity integerValue];
+                dataproduct.ProductImage=object[@"ProductImage"];
+                dataproduct.productImages=object[@"ProductImages"];
+                dataproduct.productDescription=object[@"ProductDescription"];
+                dataproduct.productquantity=[strproductQty integerValue];
+                dataproduct.productUnitprice=[strProductPrice floatValue];
+                [self.cartArray addObject:dataproduct];
                 
                 PFFile *theImage =(PFFile*)dataproduct.ProductImage;
                 [theImage getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
                     UIImage *image = [UIImage imageWithData:data];
                     dataproduct.imgproduct=image;
                 }];
-                dataproduct.ProductName=object[@"ProductId"];
-                dataproduct.RandomProductId=object[@"RandomProductId"];
-                dataproduct.ProductModel=object[@"productModel"];
-                NSString *strproductQty=object[@"productQty"];
-                NSString *strProductPrice=object[@"productPrice"];
-                dataproduct.productImages=object[@"ProductImages"];
-                dataproduct.isfavorite=object[@"isfavorite"];
-                dataproduct.productDescription=object[@"ProductDescription"];
-                NSLog(@"Data product favorite %@",dataproduct.isfavorite);
-                dataproduct.productquantity=[strproductQty integerValue];
-                dataproduct.productUnitprice=[strProductPrice floatValue];
-                dataproduct.CategoryId=object[@"categoryid"];
             }
+            [tblView1 reloadData];
         } else {
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
-
 }
 
 -(IBAction)ClickedCheckout:(id)sender

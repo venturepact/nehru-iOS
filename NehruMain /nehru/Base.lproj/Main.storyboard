@@ -835,7 +835,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" rowHeight="276" sectionHeaderHeight="22" sectionFooterHeight="22" id="OCU-vp-5hZ">
-                                <rect key="frame" x="20" y="76" width="280" height="331"/>
+                                <rect key="frame" x="20" y="76" width="280" height="391"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -976,7 +976,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" id="wZO-fd-2Nh">
-                                <rect key="frame" x="0.0" y="410" width="320" height="46"/>
+                                <rect key="frame" x="0.0" y="430" width="320" height="46"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4cj-F1-sg8">
@@ -1353,7 +1353,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="AddingProductToCartOnParse:" destination="lDJ-sf-aUw" eventType="touchUpInside" id="saj-AL-2sz"/>
+                                            <action selector="AddingProductToCartOnParse:" destination="lDJ-sf-aUw" eventType="touchUpInside" id="ekT-Qb-ll8"/>
                                         </connections>
                                     </button>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" id="mTv-N2-Eln">
